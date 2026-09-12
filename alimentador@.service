@@ -1,0 +1,15 @@
+[Unit]
+Description=Painel do alimentador de peixe
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=%i
+WorkingDirectory=/home/%i/Documents/fish_feeder
+ExecStart=/usr/bin/python3 /home/%i/Documents/fish_feeder/servidor.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
