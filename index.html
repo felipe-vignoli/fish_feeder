@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alimentador — painel do Raspberry Pi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,75..125,400..800;1,75..125,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --abismo:#061a20; --agua:#0b2b34; --agua2:#10404b; --linha:#1d515c;
+  --betta:#e0466e; --alga:#57d6bd; --areia:#efe4cc; --texto:#c9dde0;
+  --fraco:#7ba0a8; --raio:3px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:radial-gradient(1200px 480px at 50% -180px,#0f3f4b 0%,transparent 70%),var(--abismo);
+  color:var(--texto);
+  font-family:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:15px;line-height:1.55;min-height:100vh;
+}
+a{color:var(--alga)}
+.env{max-width:1000px;margin:0 auto;padding:0 22px 90px}
+header{position:sticky;top:0;z-index:30;backdrop-filter:blur(10px);
+  background:rgba(6,26,32,.86);border-bottom:1px solid var(--linha)}
+.topo{max-width:1000px;margin:0 auto;padding:14px 22px;display:flex;
+  align-items:center;gap:20px;flex-wrap:wrap}
+.marca{font-weight:800;font-size:19px;letter-spacing:-.02em;
+  font-variation-settings:"wdth" 115;color:var(--areia)}
+.marca span{color:var(--betta)}
+nav{display:flex;gap:16px;margin-left:auto;flex-wrap:wrap}
+nav a{color:var(--fraco);text-decoration:none;font-size:14px;font-weight:500}
+nav a:hover,nav a:focus-visible{color:var(--areia)}
+.sinal{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--fraco)}
+.bolha{width:9px;height:9px;border-radius:50%;background:var(--fraco)}
+.bolha.on{background:var(--alga);box-shadow:0 0 0 4px rgba(87,214,189,.15)}
+.bolha.off{background:var(--betta)}
+
+section{padding:46px 0 10px;border-top:1px solid var(--linha)}
+section:first-of-type{border-top:0}
+h2{font-size:26px;font-weight:800;letter-spacing:-.025em;margin:0 0 4px;
+  color:var(--areia);font-variation-settings:"wdth" 108}
+.sub{color:var(--fraco);margin:0 0 26px;max-width:64ch}
+
+.painel{background:linear-gradient(180deg,var(--agua),#092229);
+  border:1px solid var(--linha);border-radius:var(--raio);padding:26px}
+.grade{display:grid;grid-template-columns:repeat(2,1fr);gap:26px 34px}
+@media(max-width:680px){.grade{grid-template-columns:1fr}}
+
+.ctrl{display:block}
+.ctrl .cima{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.ctrl b{font-weight:600;color:var(--texto);font-size:14px}
+.ctrl .val{font-weight:800;font-size:22px;color:var(--areia);
+  font-variation-settings:"wdth" 112;font-variant-numeric:tabular-nums}
+.ctrl .val i{font-style:normal;font-size:12px;color:var(--fraco);font-weight:500;margin-left:2px}
+.ctrl small{color:var(--fraco);font-size:12.5px;display:block;margin-top:5px}
+
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:22px;
+  background:transparent;margin:6px 0 0;cursor:grab}
+input[type=range]:active{cursor:grabbing}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:2px;
+  background:linear-gradient(90deg,var(--betta) var(--p,50%),#123c46 var(--p,50%))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;
+  margin-top:-8px;border-radius:50%;background:var(--areia);border:3px solid var(--betta)}
+input[type=range]::-moz-range-track{height:4px;border-radius:2px;background:#123c46}
+input[type=range]::-moz-range-progress{height:4px;border-radius:2px;background:var(--betta)}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;
+  background:var(--areia);border:3px solid var(--betta)}
+input[type=range]:focus-visible{outline:2px solid var(--alga);outline-offset:6px}
+
+.acoes{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;align-items:center}
+button{font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;
+  border-radius:var(--raio);border:1px solid transparent;padding:13px 24px;
+  transition:background .15s,border-color .15s,color .15s}
+button:focus-visible{outline:2px solid var(--alga);outline-offset:3px}
+.btn-1{background:var(--betta);color:#fff}
+.btn-1:hover{background:#f2567e}
+.btn-2{background:transparent;color:var(--texto);border-color:var(--linha)}
+.btn-2:hover{border-color:var(--alga);color:var(--areia)}
+.btn-3{background:transparent;color:var(--fraco);border:0;padding:8px 10px;
+  font-size:13px;font-weight:600}
+.btn-3:hover{color:var(--betta)}
+button[disabled]{opacity:.45;cursor:not-allowed}
+.rodando{animation:pulso 1.1s ease-in-out infinite}
+@keyframes pulso{50%{opacity:.55}}
+@media(prefers-reduced-motion:reduce){.rodando{animation:none}}
+
+.celular{margin-top:26px;display:flex;gap:16px;align-items:center;
+  border:1px dashed var(--linha);border-radius:var(--raio);padding:16px 18px;
+  color:var(--fraco);opacity:.8}
+.celular b{display:block;color:var(--texto);font-size:14.5px}
+
+.log{margin-top:22px;border:1px solid var(--linha);border-radius:var(--raio);
+  background:#04141a;max-height:190px;overflow:auto;padding:12px 14px;
+  font-size:12.5px;font-variation-settings:"wdth" 90;white-space:pre-wrap}
+.log b{color:var(--alga);font-weight:600}
+
+.abas{display:inline-flex;border:1px solid var(--linha);border-radius:var(--raio);
+  overflow:hidden;margin-bottom:20px}
+.abas button{border:0;border-radius:0;background:transparent;color:var(--fraco);
+  padding:9px 18px;font-size:14px}
+.abas button[aria-pressed=true]{background:var(--agua2);color:var(--areia)}
+.dias{display:flex;gap:7px;flex-wrap:wrap}
+.dias button{padding:10px 0;width:46px;background:transparent;color:var(--fraco);
+  border:1px solid var(--linha);font-size:13px;font-weight:600}
+.dias button[aria-pressed=true]{background:var(--betta);color:#fff;border-color:var(--betta)}
+
+.cal{max-width:320px}
+.cal .cab{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.cal .cab b{color:var(--areia);font-size:15px}
+.cal .cab button{background:transparent;border:1px solid var(--linha);color:var(--texto);
+  padding:4px 11px;font-size:14px}
+.cal table{width:100%;border-collapse:collapse}
+.cal th{color:var(--fraco);font-weight:600;font-size:11.5px;padding-bottom:6px}
+.cal td{padding:2px;text-align:center}
+.cal td button{width:100%;padding:7px 0;background:transparent;border:1px solid transparent;
+  color:var(--texto);font-size:13px;font-weight:500;border-radius:var(--raio)}
+.cal td button:hover{border-color:var(--linha)}
+.cal td button[aria-pressed=true]{background:var(--betta);color:#fff}
+.cal td button[disabled]{color:#3c5c64;cursor:default}
+
+.lista{margin-top:26px;display:flex;flex-direction:column;gap:1px;
+  background:var(--linha);border:1px solid var(--linha);border-radius:var(--raio)}
+.lista .item{background:#092229;padding:14px 16px;display:flex;gap:14px;
+  align-items:center;flex-wrap:wrap}
+.lista .hora{font-size:21px;font-weight:800;color:var(--areia);
+  font-variant-numeric:tabular-nums;min-width:74px}
+.lista .desc{flex:1;min-width:180px;font-size:13.5px;color:var(--fraco)}
+.lista .desc b{color:var(--texto);font-weight:600;display:block;font-size:14.5px}
+.vazio{color:var(--fraco);font-size:14px;padding:16px 0}
+
+.sessao{margin-bottom:30px}
+.sessao .cab{display:flex;align-items:baseline;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.sessao .cab b{color:var(--areia);font-size:16px;font-weight:700}
+.sessao .cab span{color:var(--fraco);font-size:13px}
+.tiras{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+.tiras img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;
+  border-radius:var(--raio);cursor:zoom-in;background:#04141a}
+.marca-modo{font-size:11.5px;font-weight:700;color:var(--betta)}
+dialog{border:0;background:transparent;padding:0;max-width:96vw;max-height:96vh}
+dialog::backdrop{background:rgba(3,12,16,.92)}
+dialog img{max-width:96vw;max-height:90vh;display:block;border-radius:var(--raio)}
+
+.form{display:grid;grid-template-columns:repeat(2,1fr);gap:20px 28px;max-width:760px}
+@media(max-width:680px){.form{grid-template-columns:1fr}}
+.campo{display:flex;flex-direction:column;gap:5px}
+.campo label{font-size:13px;color:var(--fraco);font-weight:600}
+.campo input,.campo select{background:#04141a;border:1px solid var(--linha);
+  border-radius:var(--raio);color:var(--texto);padding:11px 12px;font-size:14.5px;
+  font-family:inherit;width:100%}
+.campo input:focus,.campo select:focus{outline:2px solid var(--alga);border-color:var(--alga)}
+.campo .junto{display:flex;gap:8px}
+.campo small{color:var(--fraco);font-size:12px}
+.largo{grid-column:1/-1}
+.check{display:flex;align-items:center;gap:9px;color:var(--texto);font-size:14px}
+.check input{accent-color:var(--betta);width:17px;height:17px}
+.cron{background:#04141a;border:1px solid var(--linha);border-radius:var(--raio);
+  padding:12px 14px;font-size:12.5px;color:var(--fraco);white-space:pre-wrap;
+  overflow-x:auto;font-variation-settings:"wdth" 88}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topo">
+    <div class="marca">alimentador<span>.</span></div>
+    <div class="sinal"><span class="bolha" id="bolha"></span><span id="estado">falando com o Pi…</span></div>
+    <nav>
+      <a href="#acionar">Acionar</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#fotos">Fotos</a>
+      <a href="#ajustes">Ajustes</a>
+    </nav>
+  </div>
+</header>
+
+<div class="env">
+
+<section id="acionar">
+  <h2>Acionar agora</h2>
+  <p class="sub">Estes controles viram argumentos do <code>vibra_e_fotografa.py</code>
+     aqui no Pi. As fotos ficam na pasta do projeto e aparecem na galeria abaixo.</p>
+
+  <div class="painel">
+    <div class="grade">
+      <label class="ctrl">
+        <span class="cima"><b>Intensidade do vibrador</b><span class="val" id="v-pwm">100<i>%</i></span></span>
+        <input type="range" id="pwm" min="1" max="100" step="1" value="100">
+        <small>PWM no GPIO <span id="pin-eco">18</span>. Abaixo de ~30% o motor pode nem sair do lugar.</small>
+      </label>
+      <label class="ctrl">
+        <span class="cima"><b>Duração da vibração</b><span class="val" id="v-dur">1,0<i>s</i></span></span>
+        <input type="range" id="dur" min="0.1" max="10" step="0.1" value="1">
+        <small>Quanto mais tempo, mais ração cai do pote.</small>
+      </label>
+      <label class="ctrl">
+        <span class="cima"><b>Número de fotos</b><span class="val" id="v-fot">3</span></span>
+        <input type="range" id="fot" min="0" max="12" step="1" value="3">
+        <small>Zero dispensa a câmera e só alimenta.</small>
+      </label>
+      <label class="ctrl">
+        <span class="cima"><b>Intervalo entre fotos</b><span class="val" id="v-int">1,0<i>s</i></span></span>
+        <input type="range" id="int" min="0.1" max="15" step="0.05" value="1">
+        <small>Intervalos curtos pegam a ração ainda caindo.</small>
+      </label>
+    </div>
+
+    <div class="acoes">
+      <button class="btn-1" id="b-feed">Alimentar peixe</button>
+      <button class="btn-2" id="b-foto">Só fotografar</button>
+      <button class="btn-3" id="b-padrao">Salvar como padrão</button>
+    </div>
+
+    <div class="celular">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+        <rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10.5 18.5h3"/>
+        <path d="M9 9.5V8a3 3 0 016 0v1.5" stroke-width="1.4"/>
+        <rect x="8.2" y="9.5" width="7.6" height="5.5" rx="1.2" fill="currentColor" stroke="none" opacity=".55"/>
+      </svg>
+      <div>
+        <b>Acionar de fora de casa — ainda não configurado</b>
+        Vai entrar pelo Pub/Sub do Google Cloud. Dentro da sua rede, este mesmo
+        endereço já abre no celular.
+      </div>
+    </div>
+
+    <div class="log" id="log"></div>
+  </div>
+</section>
+
+<section id="agenda">
+  <h2>Agenda</h2>
+  <p class="sub">Cada agendamento vira uma linha no crontab do Pi, então dispara
+     mesmo com o computador desligado e sobrevive a reinício.</p>
+
+  <div class="painel">
+    <div class="abas" role="group">
+      <button id="ab-semana" aria-pressed="true">Toda semana</button>
+      <button id="ab-datas" aria-pressed="false">Datas específicas</button>
+    </div>
+
+    <div class="form" style="max-width:none">
+      <div class="campo">
+        <label for="ag-nome">Nome</label>
+        <input id="ag-nome" placeholder="Café da manhã do betta">
+      </div>
+      <div class="campo">
+        <label for="ag-hora">Horário</label>
+        <input type="time" id="ag-hora" value="08:00">
+      </div>
+
+      <div class="campo largo" id="box-semana">
+        <label>Dias da semana</label>
+        <div class="dias" id="dias"></div>
+      </div>
+
+      <div class="campo largo" id="box-datas" hidden>
+        <label>Dias no calendário</label>
+        <div class="cal">
+          <div class="cab">
+            <button id="cal-ant" aria-label="Mês anterior">‹</button>
+            <b id="cal-mes"></b>
+            <button id="cal-prox" aria-label="Próximo mês">›</button>
+          </div>
+          <table><thead><tr id="cal-cab"></tr></thead><tbody id="cal-corpo"></tbody></table>
+        </div>
+      </div>
+
+      <div class="campo largo">
+        <label>Ajustes deste agendamento</label>
+        <small id="ag-eco"></small>
+        <div style="margin-top:10px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn-2" id="ag-usar">Usar os ajustes de cima</button>
+          <button class="btn-1" id="ag-criar">Criar agendamento</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="lista" id="lista-ag"></div>
+    <p class="sub" style="margin:22px 0 8px">No crontab agora</p>
+    <div class="cron" id="cron"></div>
+  </div>
+</section>
+
+<section id="fotos">
+  <h2>Fotos da alimentação</h2>
+  <p class="sub" id="sub-fotos">As imagens são servidas direto do Pi.</p>
+  <div class="painel" style="margin-bottom:26px">
+    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+      <button class="btn-2" id="b-pasta">Escolher pasta no computador</button>
+      <label class="check"><input type="checkbox" id="auto-baixa"> Baixar sozinho a cada acionamento</label>
+    </div>
+    <small style="color:var(--fraco);display:block;margin-top:10px" id="eco-pasta"></small>
+  </div>
+  <div id="galeria"></div>
+</section>
+
+<section id="ajustes">
+  <h2>Ajustes do Pi</h2>
+  <p class="sub">Valem para o painel e para a agenda. Ficam gravados em
+     <code>config.json</code> na pasta do projeto.</p>
+
+  <div class="painel">
+    <div class="form">
+      <div class="campo">
+        <label for="c-pino">GPIO do motor (BCM)</label>
+        <input id="c-pino" type="number" value="18">
+        <small>GPIO18 é o pino físico 12 e tem PWM por hardware.</small>
+      </div>
+      <div class="campo">
+        <label for="c-freq">Frequência do PWM (Hz)</label>
+        <input id="c-freq" type="number" value="1000">
+      </div>
+      <div class="campo">
+        <label for="c-res">Resolução das fotos</label>
+        <input id="c-res" placeholder="1296x972">
+      </div>
+      <div class="campo">
+        <label for="c-aq">Aquecimento da câmera (s)</label>
+        <input id="c-aq" type="number" step="0.1" value="0.5">
+        <small>Tempo para a exposição estabilizar antes de vibrar.</small>
+      </div>
+      <label class="check largo"><input type="checkbox" id="c-ab">
+        O driver do motor liga em nível baixo</label>
+      <div class="campo largo">
+        <label>Pasta das fotos no Pi</label>
+        <div class="cron" id="c-pasta"></div>
+      </div>
+      <div class="largo">
+        <button class="btn-1" id="b-salvar">Salvar ajustes</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<dialog id="lupa"><img alt=""></dialog>
+
+<script>
+const $ = s => document.querySelector(s);
+const api = async (url, opt={}) => (await fetch(url,
+  {headers:{'Content-Type':'application/json'}, ...opt})).json();
+const num = (v,d=1) => Number(v).toFixed(d).replace('.',',');
+
+/* ---------- sliders ---------- */
+const sl = {pwm:$('#pwm'), dur:$('#dur'), fot:$('#fot'), int:$('#int')};
+function pinta(el){
+  el.style.setProperty('--p', (el.value-el.min)/(el.max-el.min)*100 + '%');
+}
+function eco(){
+  $('#v-pwm').innerHTML = sl.pwm.value + '<i>%</i>';
+  $('#v-dur').innerHTML = num(sl.dur.value) + '<i>s</i>';
+  $('#v-fot').textContent = sl.fot.value;
+  $('#v-int').innerHTML = num(sl.int.value,2).replace(',00',',0') + '<i>s</i>';
+  Object.values(sl).forEach(pinta);
+}
+Object.values(sl).forEach(el => el.addEventListener('input', eco));
+const params = () => ({pwm:+sl.pwm.value, duracao:+sl.dur.value,
+                       fotos:+sl.fot.value, intervalo:+sl.int.value});
+
+/* ---------- log ---------- */
+let ocupado = false;
+async function puxaLog(){
+  try{
+    const d = await api('/api/log');
+    const cx = $('#log');
+    const perto = cx.scrollTop + cx.clientHeight >= cx.scrollHeight - 20;
+    cx.textContent = (d.linhas || []).join('\n');
+    if(perto) cx.scrollTop = cx.scrollHeight;
+    if(d.ocupado !== ocupado){ ocupado = d.ocupado; trava(ocupado); }
+  }catch(e){
+    $('#bolha').className = 'bolha off';
+    $('#estado').textContent = 'Pi fora de alcance';
+  }
+}
+function trava(on){
+  ['#b-feed','#b-foto'].forEach(s => {
+    $(s).disabled = on; $(s).classList.toggle('rodando', on);
+  });
+  $('#b-feed').textContent = on ? 'Acionando…' : 'Alimentar peixe';
+}
+setInterval(puxaLog, 2000);
+
+/* ---------- acionar ---------- */
+async function roda(modo){
+  trava(true);
+  const r = await api('/api/acionar',
+    {method:'POST', body: JSON.stringify({modo, ...params()})});
+  trava(false);
+  puxaLog();
+  if(!r.ok){ alert('Não deu certo: ' + r.erro); return; }
+  await carregaFotos();
+  if($('#auto-baixa').checked && pastaLocal && r.arquivos?.length)
+    baixa(r.arquivos.map(n => ({nome:n, url:'/fotos/'+n})));
+}
+$('#b-feed').onclick = () => roda('alimentacao');
+$('#b-foto').onclick = () => roda('foto');
+$('#b-padrao').onclick = async () => {
+  await api('/api/config', {method:'POST', body: JSON.stringify({padroes: params()})});
+  puxaLog();
+};
+
+/* ---------- agenda ---------- */
+const nomesDias = [['seg','seg'],['ter','ter'],['qua','qua'],['qui','qui'],
+                   ['sex','sex'],['sab','sáb'],['dom','dom']];
+let tipo = 'semanal', diasSel = new Set(), datasSel = new Set(), agParams = null;
+
+nomesDias.forEach(([k,rot]) => {
+  const b = document.createElement('button');
+  b.textContent = rot; b.setAttribute('aria-pressed','false');
+  b.onclick = () => {
+    diasSel.has(k) ? diasSel.delete(k) : diasSel.add(k);
+    b.setAttribute('aria-pressed', diasSel.has(k));
+  };
+  $('#dias').appendChild(b);
+});
+$('#ab-semana').onclick = () => setTipo('semanal');
+$('#ab-datas').onclick = () => setTipo('datas');
+function setTipo(t){
+  tipo = t;
+  $('#ab-semana').setAttribute('aria-pressed', t==='semanal');
+  $('#ab-datas').setAttribute('aria-pressed', t==='datas');
+  $('#box-semana').hidden = t!=='semanal';
+  $('#box-datas').hidden = t!=='datas';
+}
+
+let mesCal = new Date();
+function desenhaCal(){
+  const ano = mesCal.getFullYear(), mes = mesCal.getMonth();
+  $('#cal-mes').textContent = mesCal.toLocaleDateString('pt-BR',{month:'long',year:'numeric'});
+  $('#cal-cab').innerHTML = nomesDias.map(([,r]) => `<th>${r[0]}</th>`).join('');
+  const desloc = (new Date(ano,mes,1).getDay() + 6) % 7;
+  const total = new Date(ano, mes+1, 0).getDate();
+  const hoje = new Date(); hoje.setHours(0,0,0,0);
+  let html = '<tr>', col = 0;
+  for(let i=0;i<desloc;i++){ html += '<td></td>'; col++; }
+  for(let d=1; d<=total; d++){
+    const iso = `${ano}-${String(mes+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const passou = new Date(ano,mes,d) < hoje;
+    html += `<td><button data-iso="${iso}" ${passou?'disabled':''}
+             aria-pressed="${datasSel.has(iso)}">${d}</button></td>`;
+    if(++col % 7 === 0) html += '</tr><tr>';
+  }
+  $('#cal-corpo').innerHTML = html + '</tr>';
+  $('#cal-corpo').querySelectorAll('button:not([disabled])').forEach(b => {
+    b.onclick = () => {
+      const iso = b.dataset.iso;
+      datasSel.has(iso) ? datasSel.delete(iso) : datasSel.add(iso);
+      b.setAttribute('aria-pressed', datasSel.has(iso));
+    };
+  });
+}
+$('#cal-ant').onclick = () => { mesCal.setMonth(mesCal.getMonth()-1); desenhaCal(); };
+$('#cal-prox').onclick = () => { mesCal.setMonth(mesCal.getMonth()+1); desenhaCal(); };
+
+function ecoAg(){
+  const p = agParams || params();
+  $('#ag-eco').textContent = `vibra ${num(p.duracao)}s a ${p.pwm}% · ` +
+    `${p.fotos} foto(s) a cada ${num(p.intervalo)}s`;
+}
+$('#ag-usar').onclick = () => { agParams = params(); ecoAg(); };
+
+$('#ag-criar').onclick = async () => {
+  if(tipo==='semanal' && !diasSel.size) return alert('Escolha ao menos um dia da semana.');
+  if(tipo==='datas' && !datasSel.size) return alert('Escolha ao menos uma data.');
+  const p = agParams || params();
+  await api('/api/agenda', {method:'POST', body: JSON.stringify({
+    nome:$('#ag-nome').value, hora:$('#ag-hora').value, tipo,
+    dias:[...diasSel], datas:[...datasSel], parametros:p
+  })});
+  $('#ag-nome').value=''; diasSel.clear(); datasSel.clear();
+  $('#dias').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed','false'));
+  desenhaCal(); carregaAgenda(); puxaLog();
+};
+
+async function carregaAgenda(){
+  const d = await api('/api/agenda');
+  $('#cron').textContent = d.cron || '(nenhuma linha — sem agendamento ativo)';
+  const cx = $('#lista-ag');
+  if(!d.agendamentos.length){
+    cx.innerHTML = '<div class="item"><span class="vazio">Nenhum horário marcado. ' +
+      'O peixe depende de você por enquanto.</span></div>';
+    return;
+  }
+  cx.innerHTML = d.agendamentos.map(a => {
+    const quando = a.tipo==='datas'
+      ? a.datas.map(x => x.split('-').reverse().slice(0,2).join('/')).join(', ')
+      : nomesDias.filter(([k]) => a.dias.includes(k)).map(([,r]) => r).join(' · ');
+    const p = a.parametros;
+    return `<div class="item">
+      <span class="hora">${a.hora}</span>
+      <span class="desc"><b>${a.nome || (p.modo==='foto'?'Só fotos':'Alimentação')}</b>
+        ${quando} — ${num(p.duracao)}s a ${p.pwm}%, ${p.fotos} foto(s)</span>
+      <label class="check"><input type="checkbox" data-on="${a.id}" ${a.ativo?'checked':''}> ativo</label>
+      <button class="btn-3" data-teste="${a.id}">testar</button>
+      <button class="btn-3" data-del="${a.id}">remover</button>
+    </div>`;
+  }).join('');
+  cx.querySelectorAll('[data-del]').forEach(b => b.onclick = async () => {
+    await api('/api/agenda/'+b.dataset.del, {method:'DELETE'}); carregaAgenda(); puxaLog();
+  });
+  cx.querySelectorAll('[data-on]').forEach(c => c.onchange = async () => {
+    await api('/api/agenda/'+c.dataset.on,
+      {method:'PATCH', body: JSON.stringify({ativo:c.checked})});
+    carregaAgenda();
+  });
+  cx.querySelectorAll('[data-teste]').forEach(b => b.onclick = async () => {
+    trava(true);
+    await api('/api/agenda/'+b.dataset.teste+'/testar', {method:'POST'});
+    trava(false); puxaLog(); carregaFotos();
+  });
+}
+
+/* ---------- pasta local e download ---------- */
+let pastaLocal = null;
+const bd = () => new Promise((ok,erro) => {
+  const r = indexedDB.open('alimentador',1);
+  r.onupgradeneeded = () => r.result.createObjectStore('h');
+  r.onsuccess = () => ok(r.result); r.onerror = () => erro(r.error);
+});
+async function guardaPasta(h){
+  const db = await bd();
+  db.transaction('h','readwrite').objectStore('h').put(h,'pasta');
+}
+async function lePasta(){
+  try{
+    const db = await bd();
+    return await new Promise(ok => {
+      const p = db.transaction('h').objectStore('h').get('pasta');
+      p.onsuccess = () => ok(p.result); p.onerror = () => ok(null);
+    });
+  }catch(e){ return null; }
+}
+function ecoPasta(){
+  $('#eco-pasta').textContent = !window.showDirectoryPicker
+    ? 'Este navegador só permite escolher pasta em https ou em localhost. ' +
+      'Sem ela, o botão "baixar" manda as fotos para a pasta de downloads.'
+    : pastaLocal ? `Salvando em: ${pastaLocal.name}`
+                 : 'Nenhuma pasta escolhida — as fotos vão para a pasta de downloads.';
+}
+$('#b-pasta').onclick = async () => {
+  if(!window.showDirectoryPicker)
+    return alert('Seu navegador não expõe o seletor de pastas neste endereço. ' +
+                 'Use o botão "baixar" de cada sessão.');
+  try{
+    pastaLocal = await window.showDirectoryPicker({mode:'readwrite'});
+    await guardaPasta(pastaLocal); ecoPasta();
+  }catch(e){}
+};
+async function baixa(fotos){
+  for(const f of fotos){
+    const blob = await (await fetch(f.url)).blob();
+    if(pastaLocal){
+      const perm = await pastaLocal.queryPermission({mode:'readwrite'});
+      if(perm !== 'granted' &&
+         await pastaLocal.requestPermission({mode:'readwrite'}) !== 'granted'){
+        pastaLocal = null; ecoPasta(); break;
+      }
+      const arq = await pastaLocal.getFileHandle(f.nome, {create:true});
+      const w = await arq.createWritable(); await w.write(blob); await w.close();
+    }else{
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = f.nome; a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    }
+  }
+}
+
+/* ---------- fotos ---------- */
+async function carregaFotos(){
+  const d = await api('/api/sessoes');
+  $('#sub-fotos').textContent =
+    `Servidas de ${d.pasta}, no Pi. Baixe para o computador quando quiser.`;
+  const g = $('#galeria');
+  if(!d.sessoes.length){
+    g.innerHTML = '<p class="vazio">Ainda não há fotos. Acione o alimentador ' +
+                  'e elas aparecem aqui.</p>';
+    return;
+  }
+  g.innerHTML = d.sessoes.map((s,idx) => {
+    const q = s.quando ? s.quando.replace('T',' · ').slice(0,16) : 'sem registro';
+    const p = s.parametros || {};
+    return `<div class="sessao">
+      <div class="cab">
+        <b>${q}</b>
+        <span class="marca-modo">${s.modo==='foto'?'só fotos':'alimentou'}</span>
+        <span>${p.pwm?`${p.pwm}% por ${num(p.duracao)}s`:''} ${s.origem?'· '+s.origem:''}</span>
+        <span style="margin-left:auto">
+          <button class="btn-3" data-baixa="${idx}">baixar</button>
+          ${s.id!=='avulsas'?`<button class="btn-3" data-apaga="${s.id}">apagar</button>`:''}
+        </span>
+      </div>
+      <div class="tiras">${s.fotos.map(f =>
+        `<img src="${f.url}" loading="lazy" alt="foto do aquário">`).join('')}</div>
+    </div>`;
+  }).join('');
+  g.querySelectorAll('img').forEach(im => im.onclick = () => {
+    $('#lupa img').src = im.src; $('#lupa').showModal();
+  });
+  g.querySelectorAll('[data-baixa]').forEach(b => b.onclick = () =>
+    baixa(d.sessoes[+b.dataset.baixa].fotos));
+  g.querySelectorAll('[data-apaga]').forEach(b => b.onclick = async () => {
+    await api('/api/sessoes/'+b.dataset.apaga, {method:'DELETE'}); carregaFotos();
+  });
+}
+$('#lupa').onclick = () => $('#lupa').close();
+
+/* ---------- ajustes ---------- */
+function aplicaConfig(c){
+  $('#c-pino').value = c.pino; $('#c-freq').value = c.frequencia;
+  $('#c-res').value = c.resolucao; $('#c-aq').value = c.aquecimento;
+  $('#c-ab').checked = !!c.ativo_baixo; $('#pin-eco').textContent = c.pino;
+  const d = c.padroes || {};
+  sl.pwm.value = d.pwm ?? 100; sl.dur.value = d.duracao ?? 1;
+  sl.fot.value = d.fotos ?? 3; sl.int.value = d.intervalo ?? 1;
+  eco(); ecoAg();
+}
+$('#b-salvar').onclick = async () => {
+  const r = await api('/api/config', {method:'POST', body: JSON.stringify({
+    pino:$('#c-pino').value, frequencia:$('#c-freq').value,
+    resolucao:$('#c-res').value, aquecimento:$('#c-aq').value,
+    ativo_baixo:$('#c-ab').checked
+  })});
+  if(r.config) aplicaConfig(r.config);
+  puxaLog();
+};
+
+/* ---------- início ---------- */
+(async () => {
+  setTipo('semanal'); desenhaCal();
+  pastaLocal = await lePasta(); ecoPasta();
+  try{
+    const e = await api('/api/estado');
+    $('#bolha').className = 'bolha on';
+    $('#estado').textContent = e.host + (e.temp ? ' · ' + e.temp : '');
+    $('#c-pasta').textContent = e.pasta;
+    aplicaConfig(e.config);
+  }catch(err){
+    $('#bolha').className = 'bolha off';
+    $('#estado').textContent = 'Pi fora de alcance';
+  }
+  await carregaAgenda(); await carregaFotos(); await puxaLog();
+})();
+</script>
+</body>
+</html>
