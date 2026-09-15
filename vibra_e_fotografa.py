@@ -30,36 +30,57 @@ PINO_PADRAO = 18  # GPIO18 (BCM) = pino fisico 12
 BASE = Path(__file__).resolve().parent
 PASTA_PADRAO = BASE / "fotos"
 MARCADOR = "###JSON###"
+CONFIG = BASE / "config.json"
+
+
+def carregar_config():
+    """Le config.json (gravado pelo painel web) para servir de padrao aos argumentos.
+
+    Se o arquivo nao existir ou estiver corrompido, os padroes de sempre valem.
+    """
+    try:
+        with CONFIG.open("r", encoding="utf-8") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
 
 
 def argumentos():
+    cfg = carregar_config()
+    pasta_cfg = Path(cfg["pasta"]) if cfg.get("pasta") else PASTA_PADRAO
+    if not pasta_cfg.is_absolute():
+        pasta_cfg = BASE / pasta_cfg
+
     p = argparse.ArgumentParser(
         description="Vibra o motor por um tempo regulavel e tira fotos em seguida.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
-    p.add_argument("-t", "--duracao", type=float, default=1.0,
-                   help="tempo de vibracao em segundos (padrao: 1.0)")
-    p.add_argument("-p", "--pino", type=int, default=PINO_PADRAO,
+    p.add_argument("-t", "--duracao", type=float, default=cfg.get("duracao", 1.0),
+                   help="tempo de vibracao em segundos")
+    p.add_argument("-p", "--pino", type=int, default=cfg.get("pino", PINO_PADRAO),
                    help="GPIO (numeracao BCM) ligado ao driver do motor")
-    p.add_argument("-n", "--fotos", type=int, default=3,
+    p.add_argument("-n", "--fotos", type=int, default=cfg.get("fotos", 3),
                    help="quantidade de fotos apos a vibracao")
-    p.add_argument("-i", "--intervalo", type=float, default=1.0,
+    p.add_argument("-i", "--intervalo", type=float, default=cfg.get("intervalo", 1.0),
                    help="intervalo entre as fotos, em segundos")
-    p.add_argument("-w", "--pwm", type=float, default=100.0,
+    p.add_argument("-w", "--pwm", type=float, default=cfg.get("pwm", 100.0),
                    help="intensidade da vibracao, de 1 a 100 (PWM)")
-    p.add_argument("-f", "--frequencia", type=int, default=1000,
+    p.add_argument("-f", "--frequencia", type=int, default=cfg.get("frequencia", 1000),
                    help="frequencia do PWM em Hz")
-    p.add_argument("-o", "--pasta", type=Path, default=PASTA_PADRAO,
+    p.add_argument("-o", "--pasta", type=Path, default=pasta_cfg,
                    help="pasta onde as fotos sao gravadas")
-    p.add_argument("-r", "--resolucao", default="1296x972",
+    p.add_argument("-r", "--resolucao", default=cfg.get("resolucao", "1296x972"),
                    help="resolucao das fotos, no formato LARGURAxALTURA")
-    p.add_argument("--ativo-baixo", action="store_true",
+    p.add_argument("--ativo-baixo", action=argparse.BooleanOptionalAction,
+                   default=cfg.get("ativo_baixo", False),
                    help="usar se o modulo rele/driver liga com nivel baixo")
-    p.add_argument("--aquecimento", type=float, default=0.5,
+    p.add_argument("--aquecimento", type=float, default=cfg.get("aquecimento", 0.5),
                    help="tempo de ajuste automatico da camera antes de vibrar")
-    p.add_argument("--sem-camera", action="store_true",
+    p.add_argument("--sem-camera", action=argparse.BooleanOptionalAction,
+                   default=cfg.get("sem_camera", False),
                    help="apenas vibra, sem fotografar (util para testar o motor)")
-    p.add_argument("--sem-motor", action="store_true",
+    p.add_argument("--sem-motor", action=argparse.BooleanOptionalAction,
+                   default=cfg.get("sem_motor", False),
                    help="apenas fotografa, sem acionar o motor")
     p.add_argument("--json", action="store_true",
                    help="imprime um resumo em JSON na ultima linha (usado pelo painel)")

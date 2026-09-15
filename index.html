@@ -305,6 +305,32 @@ dialog img{max-width:96vw;max-height:90vh;display:block;border-radius:var(--raio
   <div class="painel">
     <div class="form">
       <div class="campo">
+        <label for="c-host">Host/IP do Raspberry Pi</label>
+        <input id="c-host" placeholder="192.168.68.106">
+        <small>Endereço IP ou hostname do seu Raspberry Pi.</small>
+      </div>
+      <div class="campo">
+        <label for="c-porta">Porta SSH</label>
+        <input id="c-porta" type="number" value="22">
+        <small>Porta padrão é 22. Use outra se alterou a configuração.</small>
+      </div>
+      <div class="campo">
+        <label for="c-usuario">Usuário SSH</label>
+        <input id="c-usuario" placeholder="vignoli-rasp">
+        <small>Login usado para entrar no Pi via SSH.</small>
+      </div>
+      <div class="campo">
+        <label for="c-senha">Senha (opcional)</label>
+        <input id="c-senha" type="password" placeholder="deixe em branco para usar chave SSH">
+        <small>Se vazio, tenta autenticar pela chave SSH padrão do usuário.</small>
+      </div>
+      <div class="campo largo">
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <button class="btn-2" id="b-ssh-testar">Testar comunicação SSH</button>
+          <small id="ssh-eco"></small>
+        </div>
+      </div>
+      <div class="campo">
         <label for="c-pino">GPIO do motor (BCM)</label>
         <input id="c-pino" type="number" value="18">
         <small>GPIO18 é o pino físico 12 e tem PWM por hardware.</small>
@@ -610,6 +636,10 @@ $('#lupa').onclick = () => $('#lupa').close();
 
 /* ---------- ajustes ---------- */
 function aplicaConfig(c){
+  $('#c-host').value = c.ssh?.host || '';
+  $('#c-porta').value = c.ssh?.porta ?? 22;
+  $('#c-usuario').value = c.ssh?.usuario || '';
+  $('#c-senha').value = c.ssh?.senha || '';
   $('#c-pino').value = c.pino; $('#c-freq').value = c.frequencia;
   $('#c-res').value = c.resolucao; $('#c-aq').value = c.aquecimento;
   $('#c-ab').checked = !!c.ativo_baixo; $('#pin-eco').textContent = c.pino;
@@ -620,12 +650,48 @@ function aplicaConfig(c){
 }
 $('#b-salvar').onclick = async () => {
   const r = await api('/api/config', {method:'POST', body: JSON.stringify({
+    ssh:{
+      host:$('#c-host').value,
+      porta:+$('#c-porta').value,
+      usuario:$('#c-usuario').value,
+      senha:$('#c-senha').value
+    },
     pino:$('#c-pino').value, frequencia:$('#c-freq').value,
     resolucao:$('#c-res').value, aquecimento:$('#c-aq').value,
     ativo_baixo:$('#c-ab').checked
   })});
   if(r.config) aplicaConfig(r.config);
   puxaLog();
+};
+
+$('#b-ssh-testar').onclick = async () => {
+  const btn = $('#b-ssh-testar'), eco = $('#ssh-eco');
+  btn.disabled = true; eco.textContent = 'Testando...'; eco.style.color = 'var(--fraco)';
+  try{
+    await api('/api/config', {method:'POST', body: JSON.stringify({
+      ssh:{
+        host:$('#c-host').value, porta:+$('#c-porta').value,
+        usuario:$('#c-usuario').value, senha:$('#c-senha').value
+      }
+    })});
+    const controle = new AbortController();
+    const estourou = setTimeout(() => controle.abort(), 10000);
+    let r;
+    try{
+      r = await api('/api/ssh/testar', {method:'POST', signal: controle.signal});
+    }finally{
+      clearTimeout(estourou);
+    }
+    eco.textContent = r.ok ? ('✓ ' + r.mensagem) : ('✗ ' + r.erro);
+    eco.style.color = r.ok ? 'var(--alga)' : 'var(--betta)';
+  }catch(e){
+    eco.textContent = e.name === 'AbortError'
+      ? '✗ Tempo esgotado (10s) — o Pi não respondeu.'
+      : '✗ Erro ao testar: ' + e.message;
+    eco.style.color = 'var(--betta)';
+  }finally{
+    btn.disabled = false;
+  }
 };
 
 /* ---------- início ---------- */

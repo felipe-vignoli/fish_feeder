@@ -1,0 +1,26 @@
+{
+  "pino": 18,
+  "frequencia": 1000,
+  "resolucao": "1296x972",
+  "ativo_baixo": false,
+  "aquecimento": 0.5,
+  "pwm": 80.0,
+  "duracao": 1.0,
+  "fotos": 5,
+  "intervalo": 2.0,
+  "pasta": "fotos",
+  "sem_camera": false,
+  "sem_motor": false,
+  "padroes": {
+    "pwm": 80.0,
+    "duracao": 1.0,
+    "fotos": 5,
+    "intervalo": 2.0
+  },
+  "ssh": {
+    "host": "192.168.68.106",
+    "usuario": "vignoli-rasp",
+    "porta": 22,
+    "senha": ""
+  }
+}

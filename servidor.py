@@ -11,6 +11,7 @@ casa) so abre o navegador em http://<ip-do-pi>:8765 e configura daqui.
 
 from __future__ import annotations
 
+import concurrent.futures
 import fcntl
 import os
 import re
@@ -91,9 +92,72 @@ def set_config():
     if "padroes" in novo:
         cfg["padroes"] = nucleo.normalizar(novo["padroes"])
         cfg["padroes"].pop("modo", None)
+    if "ssh" in novo:
+        ssh = cfg.get("ssh", {})
+        entrada = novo["ssh"] or {}
+        if "host" in entrada:
+            ssh["host"] = str(entrada["host"]).strip()
+        if "usuario" in entrada:
+            ssh["usuario"] = str(entrada["usuario"]).strip()
+        if "porta" in entrada and str(entrada["porta"]).strip() != "":
+            ssh["porta"] = int(entrada["porta"])
+        if "senha" in entrada:
+            ssh["senha"] = entrada["senha"]
+        cfg["ssh"] = ssh
     salvar_config(cfg)
     anotar("configuracao salva pelo painel")
     return jsonify({"ok": True, "config": cfg})
+
+
+@app.post("/api/ssh/testar")
+def testar_ssh():
+    ssh = carregar_config().get("ssh", {})
+    host = (ssh.get("host") or "").strip()
+    usuario = (ssh.get("usuario") or "").strip()
+    porta = int(ssh.get("porta") or 22)
+    senha = ssh.get("senha") or ""
+
+    if not host or not usuario:
+        return jsonify({"ok": False, "erro": "Preencha host e usuario nos ajustes antes de testar."})
+
+    try:
+        import paramiko
+    except ImportError:
+        return jsonify({"ok": False, "erro":
+                        "Falta instalar a biblioteca: pip install paramiko --break-system-packages"})
+
+    def conectar():
+        cliente = paramiko.SSHClient()
+        cliente.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        try:
+            # timeout cobre so a conexao TCP; banner/auth_timeout cobrem o
+            # resto do aperto de mao SSH, que sem isso pode travar bem mais
+            # (por exemplo com reverse-DNS lento no sshd do outro lado).
+            cliente.connect(host, port=porta, username=usuario,
+                            password=senha or None, timeout=5,
+                            banner_timeout=5, auth_timeout=5)
+            cliente.exec_command("echo ok")
+        finally:
+            cliente.close()
+
+    # roda numa thread a parte com prazo fixo: assim, mesmo se o paramiko
+    # travar por algum motivo fora do previsto, a resposta HTTP nao fica presa.
+    executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+    try:
+        executor.submit(conectar).result(timeout=8)
+        anotar(f"teste SSH ok para {usuario}@{host}:{porta}")
+        return jsonify({"ok": True, "mensagem": f"Conectado a {usuario}@{host}:{porta}."})
+    except concurrent.futures.TimeoutError:
+        anotar(f"teste SSH sem resposta de {usuario}@{host}:{porta} (tempo esgotado)")
+        return jsonify({"ok": False, "erro":
+                        f"Tempo esgotado tentando alcancar {host}:{porta}. Confira se o IP "
+                        "esta certo, se o Pi esta ligado na rede e se a porta SSH nao esta "
+                        "bloqueada por firewall."})
+    except Exception as e:
+        anotar(f"teste SSH falhou para {usuario}@{host}:{porta}: {e}")
+        return jsonify({"ok": False, "erro": str(e)})
+    finally:
+        executor.shutdown(wait=False)
 
 
 @app.post("/api/acionar")
