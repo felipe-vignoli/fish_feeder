@@ -11,6 +11,7 @@
   "pasta": "fotos",
   "sem_camera": false,
   "sem_motor": false,
+  "pasta_download_local": "",
   "padroes": {
     "pwm": 80.0,
     "duracao": 1.0,

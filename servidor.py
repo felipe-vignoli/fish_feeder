@@ -89,6 +89,8 @@ def set_config():
         cfg["resolucao"] = str(novo["resolucao"]).strip()
     if "ativo_baixo" in novo:
         cfg["ativo_baixo"] = bool(novo["ativo_baixo"])
+    if "pasta_download_local" in novo:
+        cfg["pasta_download_local"] = str(novo["pasta_download_local"]).strip()
     if "padroes" in novo:
         cfg["padroes"] = nucleo.normalizar(novo["padroes"])
         cfg["padroes"].pop("modo", None)

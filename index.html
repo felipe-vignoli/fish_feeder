@@ -292,6 +292,11 @@ dialog img{max-width:96vw;max-height:90vh;display:block;border-radius:var(--raio
       <button class="btn-2" id="b-pasta">Escolher pasta no computador</button>
       <label class="check"><input type="checkbox" id="auto-baixa"> Baixar sozinho a cada acionamento</label>
     </div>
+    <div class="campo" id="box-caminho" hidden style="margin-top:14px;max-width:460px">
+      <label for="pasta-caminho">Caminho completo desta pasta no seu computador</label>
+      <input id="pasta-caminho" placeholder="ex.: C:\Users\voce\Pictures\fish_feeder">
+      <small>O navegador não revela o caminho por segurança — cole ou digite aqui para guardar de referência.</small>
+    </div>
     <small style="color:var(--fraco);display:block;margin-top:10px" id="eco-pasta"></small>
   </div>
   <div id="galeria"></div>
@@ -561,6 +566,7 @@ async function lePasta(){
   }catch(e){ return null; }
 }
 function ecoPasta(){
+  $('#box-caminho').hidden = !pastaLocal;
   $('#eco-pasta').textContent = !window.showDirectoryPicker
     ? 'Este navegador só permite escolher pasta em https ou em localhost. ' +
       'Sem ela, o botão "baixar" manda as fotos para a pasta de downloads.'
@@ -574,8 +580,12 @@ $('#b-pasta').onclick = async () => {
   try{
     pastaLocal = await window.showDirectoryPicker({mode:'readwrite'});
     await guardaPasta(pastaLocal); ecoPasta();
+    if(!$('#pasta-caminho').value.trim()) $('#pasta-caminho').value = pastaLocal.name;
+    $('#pasta-caminho').focus(); $('#pasta-caminho').select();
   }catch(e){}
 };
+$('#pasta-caminho').onchange = () => api('/api/config', {method:'POST',
+  body: JSON.stringify({pasta_download_local: $('#pasta-caminho').value.trim()})});
 async function baixa(fotos){
   for(const f of fotos){
     const blob = await (await fetch(f.url)).blob();
@@ -636,6 +646,7 @@ $('#lupa').onclick = () => $('#lupa').close();
 
 /* ---------- ajustes ---------- */
 function aplicaConfig(c){
+  $('#pasta-caminho').value = c.pasta_download_local || '';
   $('#c-host').value = c.ssh?.host || '';
   $('#c-porta').value = c.ssh?.porta ?? 22;
   $('#c-usuario').value = c.ssh?.usuario || '';
