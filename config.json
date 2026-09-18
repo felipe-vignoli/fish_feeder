@@ -13,7 +13,7 @@
   "sem_motor": false,
   "pasta_download_local": "G:\\Meu Drive\\Pessoal\\fishfeeder",
   "padroes": {
-    "pwm": 35.0,
+    "pwm": 55.0,
     "duracao": 3.4,
     "fotos": 2,
     "intervalo": 2.0
