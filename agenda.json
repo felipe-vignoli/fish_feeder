@@ -1,0 +1,71 @@
+[
+  {
+    "id": "ag20260914233917077144",
+    "nome": "Café da manha",
+    "hora": "08:20",
+    "tipo": "semanal",
+    "dias": [
+      "seg",
+      "ter",
+      "qua",
+      "qui",
+      "sex",
+      "sab",
+      "dom"
+    ],
+    "datas": [],
+    "ativo": true,
+    "parametros": {
+      "pwm": 56.0,
+      "duracao": 0.9,
+      "fotos": 3,
+      "intervalo": 2.95
+    }
+  },
+  {
+    "id": "ag20260914233934698377",
+    "nome": "almoço",
+    "hora": "12:19",
+    "tipo": "semanal",
+    "dias": [
+      "seg",
+      "ter",
+      "qua",
+      "qui",
+      "sex",
+      "sab",
+      "dom"
+    ],
+    "datas": [],
+    "ativo": true,
+    "parametros": {
+      "pwm": 56.0,
+      "duracao": 0.9,
+      "fotos": 3,
+      "intervalo": 2.95
+    }
+  },
+  {
+    "id": "ag20260914234009241075",
+    "nome": "Jantar",
+    "hora": "07:15",
+    "tipo": "semanal",
+    "dias": [
+      "seg",
+      "ter",
+      "qua",
+      "qui",
+      "sex",
+      "sab",
+      "dom"
+    ],
+    "datas": [],
+    "ativo": true,
+    "parametros": {
+      "pwm": 56.0,
+      "duracao": 0.9,
+      "fotos": 3,
+      "intervalo": 2.95
+    }
+  }
+]

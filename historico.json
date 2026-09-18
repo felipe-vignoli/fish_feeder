@@ -1,0 +1,608 @@
+[
+  {
+    "id": "s20260914223311504946",
+    "inicio": "2026-09-14T22:33:11",
+    "fim": "2026-09-14T22:33:16",
+    "modo": "foto",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260914_223311_505.jpg",
+      "20260914_223313_505.jpg",
+      "20260914_223315_505.jpg"
+    ],
+    "parametros": {
+      "pwm": 56.0,
+      "duracao": 2.3,
+      "fotos": 3,
+      "intervalo": 2.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260914232553115320",
+    "inicio": "2026-09-14T23:25:53",
+    "fim": "2026-09-14T23:25:53",
+    "modo": "alimentacao",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [],
+    "parametros": {
+      "pwm": 50.0,
+      "duracao": 0.5,
+      "fotos": 0,
+      "intervalo": 1.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260914232810173723",
+    "inicio": "2026-09-14T23:28:10",
+    "fim": "2026-09-14T23:28:10",
+    "modo": "alimentacao",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [],
+    "parametros": {
+      "pwm": 50.0,
+      "duracao": 0.5,
+      "fotos": 0,
+      "intervalo": 1.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260914232819395959",
+    "inicio": "2026-09-14T23:28:19",
+    "fim": "2026-09-14T23:28:20",
+    "modo": "alimentacao",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [],
+    "parametros": {
+      "pwm": 50.0,
+      "duracao": 0.5,
+      "fotos": 0,
+      "intervalo": 1.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260914233803411381",
+    "inicio": "2026-09-14T23:38:03",
+    "fim": "2026-09-14T23:38:11",
+    "modo": "alimentacao",
+    "origem": "agenda/23:38",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260914_233807_035.jpg",
+      "20260914_233809_035.jpg",
+      "20260914_233811_035.jpg"
+    ],
+    "parametros": {
+      "pwm": 56.0,
+      "duracao": 3.5,
+      "fotos": 3,
+      "intervalo": 2.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260914235113658237",
+    "inicio": "2026-09-14T23:51:13",
+    "fim": "2026-09-14T23:51:19",
+    "modo": "alimentacao",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260914_235114_771.jpg",
+      "20260914_235116_771.jpg",
+      "20260914_235118_771.jpg"
+    ],
+    "parametros": {
+      "pwm": 56.0,
+      "duracao": 1.0,
+      "fotos": 3,
+      "intervalo": 2.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260915001552382154",
+    "inicio": "2026-09-15T00:15:52",
+    "fim": "2026-09-15T00:15:58",
+    "modo": "alimentacao",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260915_001553_487.jpg",
+      "20260915_001555_487.jpg",
+      "20260915_001557_487.jpg"
+    ],
+    "parametros": {
+      "pwm": 100.0,
+      "duracao": 1.0,
+      "fotos": 3,
+      "intervalo": 2.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260915001600924534",
+    "inicio": "2026-09-15T00:16:00",
+    "fim": "2026-09-15T00:16:06",
+    "modo": "alimentacao",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260915_001602_029.jpg",
+      "20260915_001604_029.jpg",
+      "20260915_001606_029.jpg"
+    ],
+    "parametros": {
+      "pwm": 16.0,
+      "duracao": 1.0,
+      "fotos": 3,
+      "intervalo": 2.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260915071503420943",
+    "inicio": "2026-09-15T07:15:03",
+    "fim": "2026-09-15T07:15:10",
+    "modo": "alimentacao",
+    "origem": "agenda/Jantar",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260915_071504_444.jpg",
+      "20260915_071507_394.jpg",
+      "20260915_071510_344.jpg"
+    ],
+    "parametros": {
+      "pwm": 56.0,
+      "duracao": 0.9,
+      "fotos": 3,
+      "intervalo": 2.95,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260915082003352083",
+    "inicio": "2026-09-15T08:20:03",
+    "fim": "2026-09-15T08:20:10",
+    "modo": "alimentacao",
+    "origem": "agenda/Café da manha",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260915_082004_374.jpg",
+      "20260915_082007_324.jpg",
+      "20260915_082010_274.jpg"
+    ],
+    "parametros": {
+      "pwm": 56.0,
+      "duracao": 0.9,
+      "fotos": 3,
+      "intervalo": 2.95,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260915121903376873",
+    "inicio": "2026-09-15T12:19:03",
+    "fim": "2026-09-15T12:19:10",
+    "modo": "alimentacao",
+    "origem": "agenda/almoço",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260915_121904_399.jpg",
+      "20260915_121907_349.jpg",
+      "20260915_121910_299.jpg"
+    ],
+    "parametros": {
+      "pwm": 56.0,
+      "duracao": 0.9,
+      "fotos": 3,
+      "intervalo": 2.95,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260915221800609529",
+    "inicio": "2026-09-15T22:18:00",
+    "fim": "2026-09-15T22:18:06",
+    "modo": "alimentacao",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260915_221801_869.jpg",
+      "20260915_221803_869.jpg",
+      "20260915_221805_869.jpg"
+    ],
+    "parametros": {
+      "pwm": 48.0,
+      "duracao": 1.0,
+      "fotos": 3,
+      "intervalo": 2.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260915221822987749",
+    "inicio": "2026-09-15T22:18:22",
+    "fim": "2026-09-15T22:18:29",
+    "modo": "alimentacao",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260915_221826_496.jpg",
+      "20260915_221828_496.jpg"
+    ],
+    "parametros": {
+      "pwm": 73.0,
+      "duracao": 3.4,
+      "fotos": 2,
+      "intervalo": 2.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260915221957051578",
+    "inicio": "2026-09-15T22:19:57",
+    "fim": "2026-09-15T22:19:59",
+    "modo": "foto",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260915_221957_051.jpg",
+      "20260915_221959_051.jpg"
+    ],
+    "parametros": {
+      "pwm": 73.0,
+      "duracao": 3.4,
+      "fotos": 2,
+      "intervalo": 2.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260915222027713000",
+    "inicio": "2026-09-15T22:20:27",
+    "fim": "2026-09-15T22:20:34",
+    "modo": "alimentacao",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260915_222031_222.jpg",
+      "20260915_222033_222.jpg"
+    ],
+    "parametros": {
+      "pwm": 35.0,
+      "duracao": 3.4,
+      "fotos": 2,
+      "intervalo": 2.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260915222110743750",
+    "inicio": "2026-09-15T22:21:10",
+    "fim": "2026-09-15T22:21:16",
+    "modo": "alimentacao",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260915_222114_251.jpg",
+      "20260915_222116_251.jpg"
+    ],
+    "parametros": {
+      "pwm": 54.0,
+      "duracao": 3.4,
+      "fotos": 2,
+      "intervalo": 2.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260916071504010829",
+    "inicio": "2026-09-16T07:15:04",
+    "fim": "2026-09-16T07:15:11",
+    "modo": "alimentacao",
+    "origem": "agenda/Jantar",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260916_071505_043.jpg",
+      "20260916_071507_993.jpg",
+      "20260916_071510_943.jpg"
+    ],
+    "parametros": {
+      "pwm": 56.0,
+      "duracao": 0.9,
+      "fotos": 3,
+      "intervalo": 2.95,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260916082003942304",
+    "inicio": "2026-09-16T08:20:03",
+    "fim": "2026-09-16T08:20:11",
+    "modo": "alimentacao",
+    "origem": "agenda/Café da manha",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260916_082004_964.jpg",
+      "20260916_082007_915.jpg",
+      "20260916_082010_865.jpg"
+    ],
+    "parametros": {
+      "pwm": 56.0,
+      "duracao": 0.9,
+      "fotos": 3,
+      "intervalo": 2.95,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260916121902966877",
+    "inicio": "2026-09-16T12:19:02",
+    "fim": "2026-09-16T12:19:10",
+    "modo": "alimentacao",
+    "origem": "agenda/almoço",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260916_121903_989.jpg",
+      "20260916_121906_939.jpg",
+      "20260916_121909_889.jpg"
+    ],
+    "parametros": {
+      "pwm": 56.0,
+      "duracao": 0.9,
+      "fotos": 3,
+      "intervalo": 2.95,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260917071504582443",
+    "inicio": "2026-09-17T07:15:04",
+    "fim": "2026-09-17T07:15:12",
+    "modo": "alimentacao",
+    "origem": "agenda/Jantar",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260917_071505_615.jpg",
+      "20260917_071508_566.jpg",
+      "20260917_071511_515.jpg"
+    ],
+    "parametros": {
+      "pwm": 56.0,
+      "duracao": 0.9,
+      "fotos": 3,
+      "intervalo": 2.95,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260917082003488488",
+    "inicio": "2026-09-17T08:20:03",
+    "fim": "2026-09-17T08:20:10",
+    "modo": "alimentacao",
+    "origem": "agenda/Café da manha",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260917_082004_511.jpg",
+      "20260917_082007_461.jpg",
+      "20260917_082010_411.jpg"
+    ],
+    "parametros": {
+      "pwm": 56.0,
+      "duracao": 0.9,
+      "fotos": 3,
+      "intervalo": 2.95,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260917121903456081",
+    "inicio": "2026-09-17T12:19:03",
+    "fim": "2026-09-17T12:19:10",
+    "modo": "alimentacao",
+    "origem": "agenda/almoço",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260917_121904_479.jpg",
+      "20260917_121907_429.jpg",
+      "20260917_121910_379.jpg"
+    ],
+    "parametros": {
+      "pwm": 56.0,
+      "duracao": 0.9,
+      "fotos": 3,
+      "intervalo": 2.95,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260917230932964590",
+    "inicio": "2026-09-17T23:09:32",
+    "fim": "2026-09-17T23:09:39",
+    "modo": "alimentacao",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260917_230936_536.jpg",
+      "20260917_230938_536.jpg"
+    ],
+    "parametros": {
+      "pwm": 35.0,
+      "duracao": 3.4,
+      "fotos": 2,
+      "intervalo": 2.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260917231004545716",
+    "inicio": "2026-09-17T23:10:04",
+    "fim": "2026-09-17T23:10:07",
+    "modo": "foto",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260917_231004_546.jpg",
+      "20260917_231006_546.jpg"
+    ],
+    "parametros": {
+      "pwm": 35.0,
+      "duracao": 3.4,
+      "fotos": 2,
+      "intervalo": 2.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260917231041444334",
+    "inicio": "2026-09-17T23:10:41",
+    "fim": "2026-09-17T23:10:47",
+    "modo": "alimentacao",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260917_231044_953.jpg",
+      "20260917_231046_953.jpg"
+    ],
+    "parametros": {
+      "pwm": 48.0,
+      "duracao": 3.4,
+      "fotos": 2,
+      "intervalo": 2.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260917231252728886",
+    "inicio": "2026-09-17T23:12:52",
+    "fim": "2026-09-17T23:12:56",
+    "modo": "alimentacao",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260917_231253_939.jpg",
+      "20260917_231255_939.jpg"
+    ],
+    "parametros": {
+      "pwm": 38.0,
+      "duracao": 1.1,
+      "fotos": 2,
+      "intervalo": 2.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260917231320501916",
+    "inicio": "2026-09-17T23:13:20",
+    "fim": "2026-09-17T23:13:24",
+    "modo": "alimentacao",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260917_231321_712.jpg",
+      "20260917_231323_712.jpg"
+    ],
+    "parametros": {
+      "pwm": 44.0,
+      "duracao": 1.1,
+      "fotos": 2,
+      "intervalo": 2.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260917231401021968",
+    "inicio": "2026-09-17T23:14:01",
+    "fim": "2026-09-17T23:14:04",
+    "modo": "alimentacao",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260917_231402_233.jpg",
+      "20260917_231404_233.jpg"
+    ],
+    "parametros": {
+      "pwm": 48.0,
+      "duracao": 1.1,
+      "fotos": 2,
+      "intervalo": 2.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260917231421494136",
+    "inicio": "2026-09-17T23:14:21",
+    "fim": "2026-09-17T23:14:25",
+    "modo": "alimentacao",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260917_231422_704.jpg",
+      "20260917_231424_704.jpg"
+    ],
+    "parametros": {
+      "pwm": 65.0,
+      "duracao": 1.1,
+      "fotos": 2,
+      "intervalo": 2.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  },
+  {
+    "id": "s20260917231433255981",
+    "inicio": "2026-09-17T23:14:33",
+    "fim": "2026-09-17T23:14:37",
+    "modo": "alimentacao",
+    "origem": "painel",
+    "pasta": "/home/vignoli-rasp/Documents/fish_feeder/fotos",
+    "arquivos": [
+      "20260917_231434_467.jpg",
+      "20260917_231436_467.jpg"
+    ],
+    "parametros": {
+      "pwm": 65.0,
+      "duracao": 1.1,
+      "fotos": 2,
+      "intervalo": 2.0,
+      "pino": 18,
+      "resolucao": "1296x972"
+    }
+  }
+]
