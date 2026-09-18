@@ -63,6 +63,11 @@ def argumentos():
                    help="quantidade de fotos apos a vibracao")
     p.add_argument("-i", "--intervalo", type=float, default=cfg.get("intervalo", 1.0),
                    help="intervalo entre as fotos, em segundos")
+    p.add_argument("-c", "--ciclos", type=int, default=cfg.get("ciclos", 1),
+                   help="quantidade de ciclos de vibracao (1 a 5); fotos sao tiradas a cada ciclo")
+    p.add_argument("--intervalo-ciclos", type=float, default=cfg.get("intervalo_ciclos", 6.0),
+                   help="tempo do inicio de um ciclo ao inicio do proximo, em segundos "
+                        "(minimo 6s, e nunca menor que fotos x intervalo)")
     p.add_argument("-w", "--pwm", type=float, default=cfg.get("pwm", 100.0),
                    help="intensidade da vibracao, de 1 a 100 (PWM)")
     p.add_argument("-f", "--frequencia", type=int, default=cfg.get("frequencia", 1000),
@@ -149,6 +154,27 @@ def fotografar(camera, quantidade, intervalo, pasta):
     return arquivos
 
 
+def minimo_intervalo_ciclos(fotos, intervalo):
+    """Menor intervalo_ciclos aceitavel: 6s, ou o tempo de tirar as fotos do ciclo, o que for maior."""
+    return max(6.0, fotos * intervalo)
+
+
+def executar_ciclos(pino, duracao, ativo_baixo, pwm, frequencia,
+                     ciclos, intervalo_ciclos, camera, fotos, intervalo, pasta):
+    """Vibra `ciclos` vezes, espacadas por `intervalo_ciclos`, fotografando a cada ciclo."""
+    arquivos = []
+    inicio = time.monotonic()
+    for ciclo in range(ciclos):
+        alvo = inicio + ciclo * intervalo_ciclos
+        espera = alvo - time.monotonic()
+        if espera > 0:
+            time.sleep(espera)
+        vibrar(pino, duracao, ativo_baixo, pwm, frequencia)
+        if camera is not None and fotos > 0:
+            arquivos += fotografar(camera, fotos, intervalo, pasta)
+    return arquivos
+
+
 def main():
     args = argumentos()
 
@@ -163,6 +189,12 @@ def main():
         sys.exit("O tempo de vibracao deve ser maior que zero.")
     if not 1 <= args.pwm <= 100:
         sys.exit("A intensidade (--pwm) deve ficar entre 1 e 100.")
+    if not 1 <= args.ciclos <= 5:
+        sys.exit("O numero de ciclos (--ciclos) deve ficar entre 1 e 5.")
+    minimo = minimo_intervalo_ciclos(args.fotos, args.intervalo)
+    if args.intervalo_ciclos < minimo:
+        sys.exit(f"--intervalo-ciclos deve ser pelo menos {minimo:g}s "
+                 "(6s no minimo, ou fotos x intervalo, o que for maior).")
 
     camera = None
     if not args.sem_camera and args.fotos > 0:
@@ -173,8 +205,10 @@ def main():
     arquivos = []
     try:
         if usar_motor:
-            vibrar(args.pino, duracao, args.ativo_baixo, args.pwm, args.frequencia)
-        if camera is not None:
+            arquivos = executar_ciclos(args.pino, duracao, args.ativo_baixo, args.pwm,
+                                       args.frequencia, args.ciclos, args.intervalo_ciclos,
+                                       camera, args.fotos, args.intervalo, args.pasta)
+        elif camera is not None:
             arquivos = fotografar(camera, args.fotos, args.intervalo, args.pasta)
     except KeyboardInterrupt:
         print("\nInterrompido pelo usuario.")
@@ -196,6 +230,7 @@ def main():
             "parametros": {
                 "pwm": args.pwm, "duracao": duracao if usar_motor else 0,
                 "fotos": args.fotos, "intervalo": args.intervalo,
+                "ciclos": args.ciclos, "intervalo_ciclos": args.intervalo_ciclos,
                 "pino": args.pino, "resolucao": args.resolucao,
             },
         }, ensure_ascii=False))

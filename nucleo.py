@@ -36,11 +36,14 @@ CONFIG_PADRAO = {
     "duracao": 1.0,
     "fotos": 5,
     "intervalo": 2.0,
+    "ciclos": 1,
+    "intervalo_ciclos": 6.0,
     "pasta": "fotos",
     "sem_camera": False,
     "sem_motor": False,
     "pasta_download_local": "",
-    "padroes": {"pwm": 80.0, "duracao": 1.0, "fotos": 5, "intervalo": 2.0},
+    "padroes": {"pwm": 80.0, "duracao": 1.0, "fotos": 5, "intervalo": 2.0,
+                "ciclos": 1, "intervalo_ciclos": 6.0},
     "ssh": {"host": "", "usuario": "", "porta": 22, "senha": ""},
 }
 
@@ -88,13 +91,26 @@ def salvar_config(cfg: dict) -> None:
 
 
 def normalizar(dados: dict) -> dict:
-    """Extrai pwm/duracao/fotos/intervalo (e modo, se vier) de um dict solto."""
+    """Extrai pwm/duracao/fotos/intervalo/ciclos (e modo, se vier) de um dict solto.
+
+    ciclos e intervalo_ciclos sao ajustados (clamp) para valores validos em vez de
+    dar erro, porque isso roda no servidor/agenda, nao numa linha de comando.
+    """
     padroes = CONFIG_PADRAO["padroes"]
+    fotos = int(dados.get("fotos", padroes["fotos"]))
+    intervalo = float(dados.get("intervalo", padroes["intervalo"]))
+    ciclos = int(dados.get("ciclos", padroes.get("ciclos", 1)))
+    ciclos = min(5, max(1, ciclos))
+    minimo_ciclos = vf.minimo_intervalo_ciclos(fotos, intervalo)
+    intervalo_ciclos = float(dados.get("intervalo_ciclos", padroes.get("intervalo_ciclos", minimo_ciclos)))
+    intervalo_ciclos = max(minimo_ciclos, intervalo_ciclos)
     saida = {
         "pwm": float(dados.get("pwm", padroes["pwm"])),
         "duracao": float(dados.get("duracao", padroes["duracao"])),
-        "fotos": int(dados.get("fotos", padroes["fotos"])),
-        "intervalo": float(dados.get("intervalo", padroes["intervalo"])),
+        "fotos": fotos,
+        "intervalo": intervalo,
+        "ciclos": ciclos,
+        "intervalo_ciclos": intervalo_ciclos,
     }
     if "modo" in dados:
         saida["modo"] = dados["modo"]
@@ -117,10 +133,11 @@ def _rodar(parametros: dict, origem: str) -> dict:
     arquivos = []
     try:
         if usar_motor:
-            vf.vibrar(int(cfg.get("pino", vf.PINO_PADRAO)), p["duracao"],
-                     bool(cfg.get("ativo_baixo", False)), p["pwm"],
-                     int(cfg.get("frequencia", 1000)))
-        if camera is not None:
+            arquivos = vf.executar_ciclos(
+                int(cfg.get("pino", vf.PINO_PADRAO)), p["duracao"],
+                bool(cfg.get("ativo_baixo", False)), p["pwm"], int(cfg.get("frequencia", 1000)),
+                p["ciclos"], p["intervalo_ciclos"], camera, p["fotos"], p["intervalo"], PASTA_FOTOS)
+        elif camera is not None:
             arquivos = vf.fotografar(camera, p["fotos"], p["intervalo"], PASTA_FOTOS)
     finally:
         if camera is not None:
