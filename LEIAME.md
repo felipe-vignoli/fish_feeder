@@ -47,11 +47,42 @@ entrou:
 - `--json` — imprime um resumo na última linha, depois de `###JSON###`.
 - `-o` agora tem como padrão `~/Documents/fish_feeder/fotos`, em vez de `fotos`
   relativo à pasta em que você estiver.
+- `-c/--ciclos 1..5` e `--intervalo-ciclos` — veja "Ciclos de vibração" abaixo.
 
 Ninguém chama o script direto: painel e agenda passam por `nucleo.executar()`,
 que segura uma trava em arquivo. Assim dois acionamentos nunca disputam a
 câmera — se você apertar o botão enquanto o cron está rodando, o painel avisa
 em vez de estourar um erro da picamera2.
+
+## Ciclos de vibração
+
+Em vez de vibrar uma vez só, o alimentador pode repetir a vibração (e tirar
+fotos de novo) várias vezes num mesmo acionamento — útil quando uma vibração
+só não solta ração suficiente, ou quando ela cai aos poucos.
+
+No painel, em "Acionar agora", os dois controles novos são:
+
+- **Número de ciclos** (1 a 5) — quantas vezes o motor vibra nesse
+  acionamento. Com 1 (padrão), o comportamento é exatamente o de antes.
+- **Intervalo entre ciclos** — tempo do início de um ciclo até o início do
+  próximo, em segundos. Tem duas regras:
+  - nunca pode ser menor que **6 segundos**;
+  - nunca pode ser menor que **fotos × intervalo entre fotos** (senão a
+    câmera ainda estaria tirando foto do ciclo anterior quando o motor
+    vibrasse de novo). O painel calcula esse mínimo sozinho e ajusta o campo.
+
+As fotos são tiradas a cada ciclo (não só no final): com 3 fotos e 2 ciclos,
+saem 6 fotos no total, 3 de cada vibrada.
+
+Pela linha de comando:
+
+```bash
+python3 vibra_e_fotografa.py -c 3 --intervalo-ciclos 8   # 3 ciclos, 8s entre eles
+```
+
+Na agenda e no painel, esses dois valores também entram em "Salvar como
+padrão" e ficam gravados em `config.json` (chaves `ciclos` e
+`intervalo_ciclos`, tanto soltas quanto dentro de `padroes`).
 
 ## Agenda
 
@@ -100,3 +131,12 @@ rsync -av --ignore-existing pi@raspberrypi.local:~/Documents/fish_feeder/fotos/ 
 O botão do celular fora de casa segue como mockup com cadeado, esperando o
 Pub/Sub. Quando entrar, o assinante roda no mesmo Pi e pode chamar
 `nucleo.executar()` — mesma trava, mesmo histórico, mesma galeria.
+
+## Comando para verificar servidor
+De agora em diante, nunca mais rode python3 servidor.py manualmente — isso criaria uma segunda instância brigando com a do systemd na mesma porta. Para controlar o serviço, use:
+
+
+sudo systemctl status alimentador@vignoli-rasp    # ver status
+sudo systemctl restart alimentador@vignoli-rasp   # reiniciar
+sudo systemctl stop alimentador@vignoli-rasp      # parar
+sudo journalctl -u alimentador@vignoli-rasp -f    # acompanhar logs em tempo real

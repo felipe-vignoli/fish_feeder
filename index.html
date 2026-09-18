@@ -69,6 +69,10 @@ input[type=range]::-moz-range-progress{height:4px;border-radius:2px;background:v
 input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;
   background:var(--areia);border:3px solid var(--betta)}
 input[type=range]:focus-visible{outline:2px solid var(--alga);outline-offset:6px}
+.ctrl input[type=number]{background:#04141a;border:1px solid var(--linha);border-radius:var(--raio);
+  color:var(--texto);padding:9px 10px;font-size:14.5px;font-family:inherit;width:100%;margin-top:6px}
+.ctrl input[type=number]:focus{outline:2px solid var(--alga);border-color:var(--alga)}
+.ctrl input[type=number][disabled]{opacity:.5}
 
 .acoes{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;align-items:center}
 button{font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;
@@ -204,6 +208,16 @@ dialog img{max-width:96vw;max-height:90vh;display:block;border-radius:var(--raio
         <span class="cima"><b>Intervalo entre fotos</b><span class="val" id="v-int">1,0<i>s</i></span></span>
         <input type="range" id="int" min="0.1" max="15" step="0.05" value="1">
         <small>Intervalos curtos pegam a ração ainda caindo.</small>
+      </label>
+      <label class="ctrl">
+        <span class="cima"><b>Número de ciclos</b><span class="val" id="v-cic">1</span></span>
+        <input type="range" id="cic" min="1" max="5" step="1" value="1">
+        <small>Repete a vibração e tira fotos de novo a cada ciclo.</small>
+      </label>
+      <label class="ctrl">
+        <span class="cima"><b>Intervalo entre ciclos</b><span class="val" id="v-intcic">6,0<i>s</i></span></span>
+        <input type="number" id="intcic" min="6" step="0.5" value="6">
+        <small id="intcic-eco">Só importa com mais de 1 ciclo. Mínimo 6s.</small>
       </label>
     </div>
 
@@ -377,20 +391,38 @@ const api = async (url, opt={}) => (await fetch(url,
 const num = (v,d=1) => Number(v).toFixed(d).replace('.',',');
 
 /* ---------- sliders ---------- */
-const sl = {pwm:$('#pwm'), dur:$('#dur'), fot:$('#fot'), int:$('#int')};
+const sl = {pwm:$('#pwm'), dur:$('#dur'), fot:$('#fot'), int:$('#int'), cic:$('#cic')};
+const intcic = $('#intcic');
 function pinta(el){
   el.style.setProperty('--p', (el.value-el.min)/(el.max-el.min)*100 + '%');
+}
+function minimoIntervaloCiclos(){
+  return Math.max(6, (+sl.fot.value) * (+sl.int.value));
 }
 function eco(){
   $('#v-pwm').innerHTML = sl.pwm.value + '<i>%</i>';
   $('#v-dur').innerHTML = num(sl.dur.value) + '<i>s</i>';
   $('#v-fot').textContent = sl.fot.value;
   $('#v-int').innerHTML = num(sl.int.value,2).replace(',00',',0') + '<i>s</i>';
+  $('#v-cic').textContent = sl.cic.value;
   Object.values(sl).forEach(pinta);
+
+  const min = minimoIntervaloCiclos();
+  intcic.min = min;
+  if(+intcic.value < min) intcic.value = min;
+  intcic.disabled = +sl.cic.value <= 1;
+  $('#intcic-eco').textContent = +sl.cic.value <= 1
+    ? 'Só importa com mais de 1 ciclo.'
+    : `Mínimo ${num(min,1)}s (6s, ou ${sl.fot.value} foto(s) × ${num(sl.int.value,2)}s).`;
+  $('#v-intcic').innerHTML = num(intcic.value,1) + '<i>s</i>';
 }
 Object.values(sl).forEach(el => el.addEventListener('input', eco));
+intcic.addEventListener('input', () => {
+  $('#v-intcic').innerHTML = num(intcic.value,1) + '<i>s</i>';
+});
 const params = () => ({pwm:+sl.pwm.value, duracao:+sl.dur.value,
-                       fotos:+sl.fot.value, intervalo:+sl.int.value});
+                       fotos:+sl.fot.value, intervalo:+sl.int.value,
+                       ciclos:+sl.cic.value, intervalo_ciclos:+intcic.value});
 
 /* ---------- log ---------- */
 let ocupado = false;
@@ -490,7 +522,8 @@ $('#cal-prox').onclick = () => { mesCal.setMonth(mesCal.getMonth()+1); desenhaCa
 function ecoAg(){
   const p = agParams || params();
   $('#ag-eco').textContent = `vibra ${num(p.duracao)}s a ${p.pwm}% · ` +
-    `${p.fotos} foto(s) a cada ${num(p.intervalo)}s`;
+    `${p.fotos} foto(s) a cada ${num(p.intervalo)}s` +
+    (p.ciclos > 1 ? ` · ${p.ciclos} ciclos (${num(p.intervalo_ciclos,1)}s entre eles)` : '');
 }
 $('#ag-usar').onclick = () => { agParams = params(); ecoAg(); };
 
@@ -524,7 +557,7 @@ async function carregaAgenda(){
     return `<div class="item">
       <span class="hora">${a.hora}</span>
       <span class="desc"><b>${a.nome || (p.modo==='foto'?'Só fotos':'Alimentação')}</b>
-        ${quando} — ${num(p.duracao)}s a ${p.pwm}%, ${p.fotos} foto(s)</span>
+        ${quando} — ${num(p.duracao)}s a ${p.pwm}%, ${p.fotos} foto(s)${p.ciclos>1?` × ${p.ciclos} ciclos`:''}</span>
       <label class="check"><input type="checkbox" data-on="${a.id}" ${a.ativo?'checked':''}> ativo</label>
       <button class="btn-3" data-teste="${a.id}">testar</button>
       <button class="btn-3" data-del="${a.id}">remover</button>
@@ -623,7 +656,7 @@ async function carregaFotos(){
       <div class="cab">
         <b>${q}</b>
         <span class="marca-modo">${s.modo==='foto'?'só fotos':'alimentou'}</span>
-        <span>${p.pwm?`${p.pwm}% por ${num(p.duracao)}s`:''} ${s.origem?'· '+s.origem:''}</span>
+        <span>${p.pwm?`${p.pwm}% por ${num(p.duracao)}s`:''}${p.ciclos>1?` × ${p.ciclos} ciclos`:''} ${s.origem?'· '+s.origem:''}</span>
         <span style="margin-left:auto">
           <button class="btn-3" data-baixa="${idx}">baixar</button>
           ${s.id!=='avulsas'?`<button class="btn-3" data-apaga="${s.id}">apagar</button>`:''}
@@ -657,6 +690,7 @@ function aplicaConfig(c){
   const d = c.padroes || {};
   sl.pwm.value = d.pwm ?? 100; sl.dur.value = d.duracao ?? 1;
   sl.fot.value = d.fotos ?? 3; sl.int.value = d.intervalo ?? 1;
+  sl.cic.value = d.ciclos ?? 1; intcic.value = d.intervalo_ciclos ?? 6;
   eco(); ecoAg();
 }
 $('#b-salvar').onclick = async () => {
