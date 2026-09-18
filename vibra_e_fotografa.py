@@ -24,7 +24,7 @@ import time
 from datetime import datetime
 from pathlib import Path
 
-from gpiozero import PWMOutputDevice
+from gpiozero import Device, PWMOutputDevice
 
 PINO_PADRAO = 18  # GPIO18 (BCM) = pino fisico 12
 BASE = Path(__file__).resolve().parent
@@ -119,6 +119,14 @@ def vibrar(pino, duracao, ativo_baixo, pwm=100.0, frequencia=1000):
     finally:
         motor.off()   # garante o desligamento tambem em erro ou Ctrl+C
         motor.close()
+        # gpiozero/lgpio mantem o "chip" de GPIO aberto para o resto do processo
+        # mesmo depois do close() do device; sem isso, um processo separado
+        # (ex.: o agendamento disparado pelo cron) nao consegue reivindicar o
+        # mesmo pino enquanto o servidor.py (que fica sempre rodando) nao sair.
+        # Alem de fechar, precisa zerar Device.pin_factory: senao a proxima
+        # chamada reusa a mesma fabrica ja fechada (handle=None) e quebra.
+        Device.pin_factory.close()
+        Device.pin_factory = None
     print("Vibracao encerrada.")
 
 
