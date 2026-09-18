@@ -11,11 +11,11 @@
   "pasta": "fotos",
   "sem_camera": false,
   "sem_motor": false,
-  "pasta_download_local": "",
+  "pasta_download_local": "G:\\Meu Drive\\Pessoal\\fishfeeder",
   "padroes": {
-    "pwm": 80.0,
-    "duracao": 1.0,
-    "fotos": 5,
+    "pwm": 35.0,
+    "duracao": 3.4,
+    "fotos": 2,
     "intervalo": 2.0
   },
   "ssh": {

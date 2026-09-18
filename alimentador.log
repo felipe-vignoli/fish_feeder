@@ -1,0 +1,330 @@
+[2026-09-14 22:28:31] erro: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2026-09-14 22:29:36] configuracao salva pelo painel
+[2026-09-14 22:30:03] configuracao salva pelo painel
+[2026-09-14 22:30:04] teste SSH falhou para vignoli-rasp@192.168.68.106:22: Authentication failed.
+[2026-09-14 22:30:25] alimentacao concluida (painel): 5 foto(s)
+[2026-09-14 22:30:47] alimentacao concluida (painel): 3 foto(s)
+[2026-09-14 22:30:53] configuracao salva pelo painel
+[2026-09-14 22:31:04] configuracao salva pelo painel
+[2026-09-14 22:31:13] alimentacao concluida (painel): 3 foto(s)
+[2026-09-14 22:32:59] foto concluida (painel): 3 foto(s)
+[2026-09-14 22:33:16] foto concluida (painel): 3 foto(s)
+[2026-09-14 22:33:46] configuracao salva pelo painel
+[2026-09-14 22:33:46] teste SSH falhou para vignoli-rasp@192.168.68.106:22: Authentication failed.
+[2026-09-14 22:33:48] configuracao salva pelo painel
+[2026-09-14 22:33:48] teste SSH falhou para vignoli-rasp@192.168.68.106:22: Authentication failed.
+[2026-09-14 22:33:50] configuracao salva pelo painel
+[2026-09-14 22:33:50] teste SSH falhou para vignoli-rasp@192.168.68.106:22: Authentication failed.
+[2026-09-14 22:34:02] sessao s20260914223016166414 apagada
+[2026-09-14 22:34:03] sessao s20260914223042229800 apagada
+[2026-09-14 22:34:04] sessao s20260914223105770806 apagada
+[2026-09-14 22:34:04] sessao s20260914223254587642 apagada
+[2026-09-14 22:35:10] erro: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2026-09-14 22:35:11] erro: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2026-09-14 22:35:40] crontab atualizado: 1 linha(s)
+[2026-09-14 22:36:56] crontab atualizado: 2 linha(s)
+[49:13:38.039160828] [5860]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[49:13:38.073582536] [5863]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
+[49:13:38.119522903] [5863]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/ov5647.json
+[49:13:38.134435858] [5863]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/ov5647@36' for pipeline handler rpi/vc4
+[49:13:38.134568565] [5863]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/ov5647@36 to Unicam device /dev/media0 and ISP device /dev/media1
+[49:13:38.149142409] [5860]  INFO Camera camera.cpp:1216 configuring streams: (0) 1296x972-BGR888/sRGB (1) 1296x972-SGBRG10_CSI2P/RAW
+[49:13:38.149842247] [5863]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/ov5647@36 - Selected sensor format: 1296x972-SGBRG10_1X10/RAW - Selected unicam format: 1296x972-pGAA/RAW
+[2026-09-14 22:37:03] falha ao executar (agenda/22:37): 'GPIO busy'
+[2026-09-14 22:37:03] agenda falhou: 'GPIO busy'
+[2026-09-14 22:37:03] falha ao executar (agenda/22:37): 'GPIO busy'
+[2026-09-14 22:37:03] agenda falhou: 'GPIO busy'
+[2026-09-14 22:37:25] crontab atualizado: 3 linha(s)
+[2026-09-14 22:37:31] crontab atualizado: 2 linha(s)
+[49:14:37.909797317] [5917]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[49:14:37.944889466] [5920]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
+[49:14:37.990508016] [5920]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/ov5647.json
+[49:14:38.005606474] [5920]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/ov5647@36' for pipeline handler rpi/vc4
+[49:14:38.005742775] [5920]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/ov5647@36 to Unicam device /dev/media0 and ISP device /dev/media1
+[49:14:38.020410819] [5917]  INFO Camera camera.cpp:1216 configuring streams: (0) 1296x972-BGR888/sRGB (1) 1296x972-SGBRG10_CSI2P/RAW
+[49:14:38.021109201] [5920]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/ov5647@36 - Selected sensor format: 1296x972-SGBRG10_1X10/RAW - Selected unicam format: 1296x972-pGAA/RAW
+[2026-09-14 22:38:03] falha ao executar (agenda/Jantar): 'GPIO busy'
+[2026-09-14 22:38:03] agenda falhou: 'GPIO busy'
+[2026-09-14 22:38:03] falha ao executar (agenda/Jantar): 'GPIO busy'
+[2026-09-14 22:38:03] agenda falhou: 'GPIO busy'
+[2026-09-14 22:38:28] alimentacao concluida (painel): 3 foto(s)
+[49:15:38.754248044] [5973]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[49:15:38.823850612] [5979]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
+[49:15:38.918416526] [5979]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/ov5647.json
+[49:15:38.949485670] [5979]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/ov5647@36' for pipeline handler rpi/vc4
+[49:15:38.949687543] [5979]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/ov5647@36 to Unicam device /dev/media0 and ISP device /dev/media1
+[49:15:38.980906009] [5973]  INFO Camera camera.cpp:1216 configuring streams: (0) 1296x972-BGR888/sRGB (1) 1296x972-SGBRG10_CSI2P/RAW
+[49:15:38.982148190] [5979]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/ov5647@36 - Selected sensor format: 1296x972-SGBRG10_1X10/RAW - Selected unicam format: 1296x972-pGAA/RAW
+[2026-09-14 22:39:04] falha ao executar (agenda/22:39): 'GPIO busy'
+[2026-09-14 22:39:04] agenda falhou: 'GPIO busy'
+[2026-09-14 22:39:04] falha ao executar (agenda/22:39): 'GPIO busy'
+[2026-09-14 22:39:04] agenda falhou: 'GPIO busy'
+[2026-09-14 22:45:56] alimentacao concluida (painel): 3 foto(s)
+[2026-09-14 22:46:08] alimentacao concluida (painel): 3 foto(s)
+[2026-09-14 22:49:27] alimentacao concluida (agenda/Jantar): 3 foto(s)
+[2026-09-14 22:49:35] alimentacao concluida (agenda/22:39): 3 foto(s)
+[2026-09-14 22:49:54] crontab atualizado: 3 linha(s)
+[49:26:37.800251783] [6386]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[49:26:37.834656331] [6390]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
+[49:26:37.880191479] [6390]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/ov5647.json
+[49:26:37.895104759] [6390]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/ov5647@36' for pipeline handler rpi/vc4
+[49:26:37.895231581] [6390]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/ov5647@36 to Unicam device /dev/media0 and ISP device /dev/media1
+[49:26:37.909882988] [6386]  INFO Camera camera.cpp:1216 configuring streams: (0) 1296x972-BGR888/sRGB (1) 1296x972-SGBRG10_CSI2P/RAW
+[49:26:37.910566264] [6390]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/ov5647@36 - Selected sensor format: 1296x972-SGBRG10_1X10/RAW - Selected unicam format: 1296x972-pGAA/RAW
+[2026-09-14 22:50:03] falha ao executar (agenda/22:50): 'GPIO busy'
+[2026-09-14 22:50:03] agenda falhou: 'GPIO busy'
+[2026-09-14 22:50:03] falha ao executar (agenda/22:50): 'GPIO busy'
+[2026-09-14 22:50:03] agenda falhou: 'GPIO busy'
+[2026-09-14 22:50:19] crontab atualizado: 4 linha(s)
+[2026-09-14 22:50:21] crontab atualizado: 3 linha(s)
+[2026-09-14 22:50:22] crontab atualizado: 2 linha(s)
+[2026-09-14 22:50:23] crontab atualizado: 1 linha(s)
+[49:27:38.668627480] [6459]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[49:27:38.703185775] [6463]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
+[49:27:38.748663212] [6463]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/ov5647.json
+[49:27:38.763592481] [6463]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/ov5647@36' for pipeline handler rpi/vc4
+[49:27:38.763723834] [6463]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/ov5647@36 to Unicam device /dev/media0 and ISP device /dev/media1
+[49:27:38.778371647] [6459]  INFO Camera camera.cpp:1216 configuring streams: (0) 1296x972-BGR888/sRGB (1) 1296x972-SGBRG10_CSI2P/RAW
+[49:27:38.779139246] [6463]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/ov5647@36 - Selected sensor format: 1296x972-SGBRG10_1X10/RAW - Selected unicam format: 1296x972-pGAA/RAW
+[2026-09-14 22:51:04] falha ao executar (agenda/22:51): 'GPIO busy'
+[2026-09-14 22:51:04] agenda falhou: 'GPIO busy'
+[2026-09-14 22:51:04] falha ao executar (agenda/22:51): 'GPIO busy'
+[2026-09-14 22:51:04] agenda falhou: 'GPIO busy'
+[2026-09-14 22:51:22] alimentacao concluida (agenda/22:51): 3 foto(s)
+[2026-09-14 22:58:53] alimentacao concluida (painel): 3 foto(s)
+[2026-09-14 22:59:05] alimentacao concluida (painel): 3 foto(s)
+[2026-09-14 22:59:12] alimentacao concluida (painel): 1 foto(s)
+[2026-09-14 22:59:20] sessao s20260914225911028962 apagada
+[2026-09-14 22:59:22] sessao s20260914225859656259 apagada
+[2026-09-14 22:59:24] sessao s20260914225848303896 apagada
+[2026-09-14 22:59:27] sessao s20260914225116761142 apagada
+[2026-09-14 22:59:28] sessao s20260914224928328188 apagada
+[2026-09-14 22:59:29] sessao s20260914224920595216 apagada
+[2026-09-14 22:59:31] sessao s20260914224601470043 apagada
+[2026-09-14 22:59:33] sessao s20260914224549266192 apagada
+[2026-09-14 22:59:34] sessao s20260914223821148788 apagada
+[2026-09-14 23:01:13] erro: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2026-09-14 23:01:16] configuracao salva pelo painel
+[2026-09-14 23:01:16] teste SSH falhou para vignoli-rasp@192.168.68.106:22: Authentication failed.
+[2026-09-14 23:16:46] erro: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2026-09-14 23:17:01] alimentacao concluida (painel): 3 foto(s)
+[2026-09-14 23:17:14] alimentacao concluida (painel): 3 foto(s)
+[2026-09-14 23:17:47] crontab atualizado: 2 linha(s)
+[0:03:31.230269229] [1572]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[0:03:31.264860829] [1576]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
+[0:03:31.310651982] [1576]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/ov5647.json
+[0:03:31.325525278] [1576]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/ov5647@36' for pipeline handler rpi/vc4
+[0:03:31.325659805] [1576]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/ov5647@36 to Unicam device /dev/media0 and ISP device /dev/media1
+[0:03:31.340273838] [1572]  INFO Camera camera.cpp:1216 configuring streams: (0) 1296x972-BGR888/sRGB (1) 1296x972-SGBRG10_CSI2P/RAW
+[0:03:31.340960275] [1576]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/ov5647@36 - Selected sensor format: 1296x972-SGBRG10_1X10/RAW - Selected unicam format: 1296x972-pGAA/RAW
+[2026-09-14 23:18:03] falha ao executar (agenda/23:18): 'GPIO busy'
+[2026-09-14 23:18:03] agenda falhou: 'GPIO busy'
+[2026-09-14 23:18:03] falha ao executar (agenda/23:18): 'GPIO busy'
+[2026-09-14 23:18:03] agenda falhou: 'GPIO busy'
+[2026-09-14 23:18:24] alimentacao concluida (agenda/23:18): 3 foto(s)
+[2026-09-14 23:21:13] configuracao salva pelo painel
+[2026-09-14 23:21:15] teste SSH falhou para vignoli-rasp@192.168.68.106:22: Authentication failed.
+[2026-09-14 23:23:29] falha ao executar (agenda/23:18): 'GPIO busy'
+[2026-09-14 23:23:29] agenda falhou: 'GPIO busy'
+[2026-09-14 23:25:53] alimentacao concluida (painel): 0 foto(s)
+[2026-09-14 23:26:09] alimentacao concluida (agenda/23:18): 3 foto(s)
+[2026-09-14 23:26:29] alimentacao concluida (agenda/22:51): 3 foto(s)
+[2026-09-14 23:26:29] falha ao executar (painel): unsupported operand type(s) for &: 'NoneType' and 'int'
+[2026-09-14 23:28:10] alimentacao concluida (painel): 0 foto(s)
+[2026-09-14 23:28:18] alimentacao concluida (agenda/23:18): 3 foto(s)
+[2026-09-14 23:28:20] alimentacao concluida (painel): 0 foto(s)
+[2026-09-14 23:31:12] alimentacao concluida (painel): 3 foto(s)
+[2026-09-14 23:31:34] foto concluida (painel): 3 foto(s)
+[2026-09-14 23:31:46] sessao s20260914233129639900 apagada
+[2026-09-14 23:31:46] sessao s20260914233107379945 apagada
+[2026-09-14 23:31:47] sessao s20260914232813125494 apagada
+[2026-09-14 23:31:49] sessao s20260914232623325254 apagada
+[2026-09-14 23:31:50] sessao s20260914232604381607 apagada
+[2026-09-14 23:31:51] sessao s20260914231819395782 apagada
+[2026-09-14 23:31:52] sessao s20260914231708888078 apagada
+[2026-09-14 23:31:53] sessao s20260914231652987217 apagada
+[2026-09-14 23:37:03] erro: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2026-09-14 23:37:22] crontab atualizado: 3 linha(s)
+[2026-09-14 23:37:26] crontab atualizado: 2 linha(s)
+[2026-09-14 23:37:27] crontab atualizado: 1 linha(s)
+[0:23:31.174325915] [2531]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[0:23:31.208888342] [2534]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
+[0:23:31.254423040] [2534]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/ov5647.json
+[0:23:31.269306378] [2534]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/ov5647@36' for pipeline handler rpi/vc4
+[0:23:31.269438357] [2534]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/ov5647@36 to Unicam device /dev/media0 and ISP device /dev/media1
+[0:23:31.283895500] [2531]  INFO Camera camera.cpp:1216 configuring streams: (0) 1296x972-BGR888/sRGB (1) 1296x972-SGBRG10_CSI2P/RAW
+[0:23:31.284642110] [2534]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/ov5647@36 - Selected sensor format: 1296x972-SGBRG10_1X10/RAW - Selected unicam format: 1296x972-pGAA/RAW
+[2026-09-14 23:38:11] alimentacao concluida (agenda/23:38): 3 foto(s)
+Vibrando por 3.5 s no GPIO18 a 56% (1000 Hz)...
+Vibracao encerrada.
+Foto 1/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260914_233807_035.jpg (+0.09 s)
+Foto 2/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260914_233809_035.jpg (+2.15 s)
+Foto 3/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260914_233811_035.jpg (+4.15 s)
+[2026-09-14 23:38:11] alimentacao concluida (agenda/23:38): 3 foto(s)
+[2026-09-14 23:38:52] crontab atualizado: 2 linha(s)
+[2026-09-14 23:39:00] crontab atualizado: 1 linha(s)
+[2026-09-14 23:39:17] crontab atualizado: 2 linha(s)
+[2026-09-14 23:39:19] crontab atualizado: 1 linha(s)
+[2026-09-14 23:39:34] crontab atualizado: 2 linha(s)
+[2026-09-14 23:40:09] crontab atualizado: 3 linha(s)
+[2026-09-14 23:45:54] erro: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2026-09-14 23:46:12] alimentacao concluida (painel): 3 foto(s)
+[2026-09-14 23:50:30] alimentacao concluida (painel): 3 foto(s)
+[2026-09-14 23:51:08] configuracao salva pelo painel
+[2026-09-14 23:51:19] alimentacao concluida (painel): 3 foto(s)
+[2026-09-14 23:51:23] sessao s20260914235022059589 apagada
+[2026-09-14 23:51:24] sessao s20260914234604382704 apagada
+[2026-09-14 23:51:55] configuracao salva pelo painel
+[2026-09-15 00:08:54] alimentacao concluida (painel): 3 foto(s)
+[2026-09-15 00:13:43] alimentacao concluida (painel): 3 foto(s)
+[2026-09-15 00:13:56] sessao s20260915001337926457 apagada
+[2026-09-15 00:13:57] sessao s20260915000848583106 apagada
+[2026-09-15 00:15:58] alimentacao concluida (painel): 3 foto(s)
+[2026-09-15 00:16:06] alimentacao concluida (painel): 3 foto(s)
+[2026-09-15 00:16:09] configuracao salva pelo painel
+[8:00:31.184946126] [4003]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[8:00:31.219415852] [4006]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
+[8:00:31.264887210] [4006]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/ov5647.json
+[8:00:31.279665530] [4006]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/ov5647@36' for pipeline handler rpi/vc4
+[8:00:31.279802925] [4006]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/ov5647@36 to Unicam device /dev/media0 and ISP device /dev/media1
+[8:00:31.294237081] [4003]  INFO Camera camera.cpp:1216 configuring streams: (0) 1296x972-BGR888/sRGB (1) 1296x972-SGBRG10_CSI2P/RAW
+[8:00:31.294940773] [4006]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/ov5647@36 - Selected sensor format: 1296x972-SGBRG10_1X10/RAW - Selected unicam format: 1296x972-pGAA/RAW
+[2026-09-15 07:15:10] alimentacao concluida (agenda/Jantar): 3 foto(s)
+Vibrando por 0.9 s no GPIO18 a 56% (1000 Hz)...
+Vibracao encerrada.
+Foto 1/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260915_071504_444.jpg (+0.05 s)
+Foto 2/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260915_071507_394.jpg (+3.05 s)
+Foto 3/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260915_071510_344.jpg (+6.06 s)
+[2026-09-15 07:15:10] alimentacao concluida (agenda/Jantar): 3 foto(s)
+[9:05:31.114727637] [4084]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[9:05:31.149241305] [4087]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
+[9:05:31.194714309] [4087]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/ov5647.json
+[9:05:31.209614705] [4087]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/ov5647@36' for pipeline handler rpi/vc4
+[9:05:31.209747464] [4087]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/ov5647@36 to Unicam device /dev/media0 and ISP device /dev/media1
+[9:05:31.224309269] [4084]  INFO Camera camera.cpp:1216 configuring streams: (0) 1296x972-BGR888/sRGB (1) 1296x972-SGBRG10_CSI2P/RAW
+[9:05:31.225013481] [4087]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/ov5647@36 - Selected sensor format: 1296x972-SGBRG10_1X10/RAW - Selected unicam format: 1296x972-pGAA/RAW
+[2026-09-15 08:20:10] alimentacao concluida (agenda/Café da manha): 3 foto(s)
+Vibrando por 0.9 s no GPIO18 a 56% (1000 Hz)...
+Vibracao encerrada.
+Foto 1/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260915_082004_374.jpg (+0.05 s)
+Foto 2/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260915_082007_324.jpg (+3.08 s)
+Foto 3/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260915_082010_274.jpg (+6.02 s)
+[2026-09-15 08:20:10] alimentacao concluida (agenda/Café da manha): 3 foto(s)
+[2026-09-15 08:23:41] erro: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2026-09-15 08:27:34] erro: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[13:04:31.139320161] [6418]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[13:04:31.173888128] [6421]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
+[13:04:31.219499590] [6421]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/ov5647.json
+[13:04:31.234468985] [6421]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/ov5647@36' for pipeline handler rpi/vc4
+[13:04:31.234601380] [6421]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/ov5647@36 to Unicam device /dev/media0 and ISP device /dev/media1
+[13:04:31.249341767] [6418]  INFO Camera camera.cpp:1216 configuring streams: (0) 1296x972-BGR888/sRGB (1) 1296x972-SGBRG10_CSI2P/RAW
+[13:04:31.250049885] [6421]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/ov5647@36 - Selected sensor format: 1296x972-SGBRG10_1X10/RAW - Selected unicam format: 1296x972-pGAA/RAW
+[2026-09-15 12:19:10] alimentacao concluida (agenda/almoço): 3 foto(s)
+Vibrando por 0.9 s no GPIO18 a 56% (1000 Hz)...
+Vibracao encerrada.
+Foto 1/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260915_121904_399.jpg (+0.04 s)
+Foto 2/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260915_121907_349.jpg (+3.06 s)
+Foto 3/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260915_121910_299.jpg (+6.02 s)
+[2026-09-15 12:19:10] alimentacao concluida (agenda/almoço): 3 foto(s)
+[2026-09-15 17:20:16] erro: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2026-09-15 22:17:49] erro: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2026-09-15 22:18:09] alimentacao concluida (painel): 3 foto(s)
+[2026-09-15 22:18:29] alimentacao concluida (painel): 2 foto(s)
+[2026-09-15 22:19:59] foto concluida (painel): 2 foto(s)
+[2026-09-15 22:20:26] configuracao salva pelo painel
+[2026-09-15 22:20:34] alimentacao concluida (painel): 2 foto(s)
+[2026-09-15 22:21:16] alimentacao concluida (painel): 2 foto(s)
+[8:58:38.688918793] [2381]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[8:58:38.723185915] [2384]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
+[8:58:38.768917754] [2384]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/ov5647.json
+[8:58:38.783730418] [2384]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/ov5647@36' for pipeline handler rpi/vc4
+[8:58:38.783858542] [2384]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/ov5647@36 to Unicam device /dev/media2 and ISP device /dev/media0
+[8:58:38.798387823] [2381]  INFO Camera camera.cpp:1216 configuring streams: (0) 1296x972-BGR888/sRGB (1) 1296x972-SGBRG10_CSI2P/RAW
+[8:58:38.799073600] [2384]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/ov5647@36 - Selected sensor format: 1296x972-SGBRG10_1X10/RAW - Selected unicam format: 1296x972-pGAA/RAW
+[2026-09-16 07:15:11] alimentacao concluida (agenda/Jantar): 3 foto(s)
+Vibrando por 0.9 s no GPIO18 a 56% (1000 Hz)...
+Vibracao encerrada.
+Foto 1/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260916_071505_043.jpg (+0.04 s)
+Foto 2/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260916_071507_993.jpg (+3.04 s)
+Foto 3/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260916_071510_943.jpg (+6.01 s)
+[2026-09-16 07:15:11] alimentacao concluida (agenda/Jantar): 3 foto(s)
+[10:03:38.617339380] [2517]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[10:03:38.652767642] [2520]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
+[10:03:38.698724275] [2520]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/ov5647.json
+[10:03:38.713656575] [2520]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/ov5647@36' for pipeline handler rpi/vc4
+[10:03:38.713789491] [2520]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/ov5647@36 to Unicam device /dev/media2 and ISP device /dev/media0
+[10:03:38.728354554] [2517]  INFO Camera camera.cpp:1216 configuring streams: (0) 1296x972-BGR888/sRGB (1) 1296x972-SGBRG10_CSI2P/RAW
+[10:03:38.729058925] [2520]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/ov5647@36 - Selected sensor format: 1296x972-SGBRG10_1X10/RAW - Selected unicam format: 1296x972-pGAA/RAW
+[2026-09-16 08:20:11] alimentacao concluida (agenda/Café da manha): 3 foto(s)
+Vibrando por 0.9 s no GPIO18 a 56% (1000 Hz)...
+Vibracao encerrada.
+Foto 1/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260916_082004_964.jpg (+0.04 s)
+Foto 2/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260916_082007_915.jpg (+3.13 s)
+Foto 3/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260916_082010_865.jpg (+6.06 s)
+[2026-09-16 08:20:11] alimentacao concluida (agenda/Café da manha): 3 foto(s)
+[14:02:37.641568765] [2753]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[14:02:37.676365732] [2756]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
+[14:02:37.722046329] [2756]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/ov5647.json
+[14:02:37.738459559] [2756]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/ov5647@36' for pipeline handler rpi/vc4
+[14:02:37.738584402] [2756]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/ov5647@36 to Unicam device /dev/media2 and ISP device /dev/media0
+[14:02:37.753073425] [2753]  INFO Camera camera.cpp:1216 configuring streams: (0) 1296x972-BGR888/sRGB (1) 1296x972-SGBRG10_CSI2P/RAW
+[14:02:37.753765868] [2756]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/ov5647@36 - Selected sensor format: 1296x972-SGBRG10_1X10/RAW - Selected unicam format: 1296x972-pGAA/RAW
+[2026-09-16 12:19:10] alimentacao concluida (agenda/almoço): 3 foto(s)
+Vibrando por 0.9 s no GPIO18 a 56% (1000 Hz)...
+Vibracao encerrada.
+Foto 1/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260916_121903_989.jpg (+0.04 s)
+Foto 2/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260916_121906_939.jpg (+3.11 s)
+Foto 3/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260916_121909_889.jpg (+6.01 s)
+[2026-09-16 12:19:10] alimentacao concluida (agenda/almoço): 3 foto(s)
+[32:58:39.250144332] [4103]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[32:58:39.286535840] [4106]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
+[32:58:39.336186078] [4106]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/ov5647.json
+[32:58:39.350967927] [4106]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/ov5647@36' for pipeline handler rpi/vc4
+[32:58:39.351097515] [4106]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/ov5647@36 to Unicam device /dev/media2 and ISP device /dev/media0
+[32:58:39.365724932] [4103]  INFO Camera camera.cpp:1216 configuring streams: (0) 1296x972-BGR888/sRGB (1) 1296x972-SGBRG10_CSI2P/RAW
+[32:58:39.366418130] [4106]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/ov5647@36 - Selected sensor format: 1296x972-SGBRG10_1X10/RAW - Selected unicam format: 1296x972-pGAA/RAW
+[2026-09-17 07:15:12] alimentacao concluida (agenda/Jantar): 3 foto(s)
+Vibrando por 0.9 s no GPIO18 a 56% (1000 Hz)...
+Vibracao encerrada.
+Foto 1/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260917_071505_615.jpg (+0.04 s)
+Foto 2/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260917_071508_566.jpg (+3.03 s)
+Foto 3/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260917_071511_515.jpg (+6.01 s)
+[2026-09-17 07:15:12] alimentacao concluida (agenda/Jantar): 3 foto(s)
+[34:03:38.163022258] [4186]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[34:03:38.197959445] [4189]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
+[34:03:38.243854982] [4189]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/ov5647.json
+[34:03:38.258799483] [4189]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/ov5647@36' for pipeline handler rpi/vc4
+[34:03:38.258930108] [4189]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/ov5647@36 to Unicam device /dev/media2 and ISP device /dev/media0
+[34:03:38.273567161] [4186]  INFO Camera camera.cpp:1216 configuring streams: (0) 1296x972-BGR888/sRGB (1) 1296x972-SGBRG10_CSI2P/RAW
+[34:03:38.274276589] [4189]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/ov5647@36 - Selected sensor format: 1296x972-SGBRG10_1X10/RAW - Selected unicam format: 1296x972-pGAA/RAW
+[2026-09-17 08:20:10] alimentacao concluida (agenda/Café da manha): 3 foto(s)
+Vibrando por 0.9 s no GPIO18 a 56% (1000 Hz)...
+Vibracao encerrada.
+Foto 1/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260917_082004_511.jpg (+0.04 s)
+Foto 2/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260917_082007_461.jpg (+3.12 s)
+Foto 3/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260917_082010_411.jpg (+6.02 s)
+[2026-09-17 08:20:10] alimentacao concluida (agenda/Café da manha): 3 foto(s)
+[38:02:38.132992363] [4403]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[38:02:38.167427177] [4406]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
+[38:02:38.213240576] [4406]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/ov5647.json
+[38:02:38.228174974] [4406]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/ov5647@36' for pipeline handler rpi/vc4
+[38:02:38.228302213] [4406]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/ov5647@36 to Unicam device /dev/media2 and ISP device /dev/media0
+[38:02:38.242699688] [4403]  INFO Camera camera.cpp:1216 configuring streams: (0) 1296x972-BGR888/sRGB (1) 1296x972-SGBRG10_CSI2P/RAW
+[38:02:38.243394111] [4406]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/ov5647@36 - Selected sensor format: 1296x972-SGBRG10_1X10/RAW - Selected unicam format: 1296x972-pGAA/RAW
+[2026-09-17 12:19:10] alimentacao concluida (agenda/almoço): 3 foto(s)
+Vibrando por 0.9 s no GPIO18 a 56% (1000 Hz)...
+Vibracao encerrada.
+Foto 1/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260917_121904_479.jpg (+0.04 s)
+Foto 2/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260917_121907_429.jpg (+3.07 s)
+Foto 3/3: /home/vignoli-rasp/Documents/fish_feeder/fotos/20260917_121910_379.jpg (+5.99 s)
+[2026-09-17 12:19:10] alimentacao concluida (agenda/almoço): 3 foto(s)
+[2026-09-17 23:09:25] erro: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2026-09-17 23:09:39] alimentacao concluida (painel): 2 foto(s)
+[2026-09-17 23:09:57] erro: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2026-09-17 23:10:07] foto concluida (painel): 2 foto(s)
+[2026-09-17 23:10:47] alimentacao concluida (painel): 2 foto(s)
+[2026-09-17 23:12:56] alimentacao concluida (painel): 2 foto(s)
+[2026-09-17 23:13:24] alimentacao concluida (painel): 2 foto(s)
+[2026-09-17 23:14:04] alimentacao concluida (painel): 2 foto(s)
+[2026-09-17 23:14:25] alimentacao concluida (painel): 2 foto(s)
+[2026-09-17 23:14:37] alimentacao concluida (painel): 2 foto(s)
