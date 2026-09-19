@@ -15,15 +15,15 @@
   "sem_motor": false,
   "pasta_download_local": "G:\\Meu Drive\\Pessoal\\fishfeeder",
   "padroes": {
-    "pwm": 55.0,
-    "duracao": 3.4,
-    "fotos": 2,
-    "intervalo": 2.0,
+    "pwm": 80.0,
+    "duracao": 0.7,
+    "fotos": 3,
+    "intervalo": 5.55,
     "ciclos": 1,
-    "intervalo_ciclos": 6.0
+    "intervalo_ciclos": 27.4
   },
   "ssh": {
-    "host": "192.168.68.106",
+    "host": "192.168.68.109",
     "usuario": "vignoli-rasp",
     "porta": 22,
     "senha": ""
