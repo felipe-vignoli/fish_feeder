@@ -23,7 +23,7 @@
     "intervalo_ciclos": 6.0
   },
   "ssh": {
-    "host": "192.168.68.106",
+    "host": "192.168.68.109",
     "usuario": "vignoli-rasp",
     "porta": 22,
     "senha": ""
