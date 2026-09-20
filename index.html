@@ -136,6 +136,13 @@ button[disabled]{opacity:.45;cursor:not-allowed}
 .vazio{color:var(--fraco);font-size:14px;padding:16px 0}
 
 .sessao{margin-bottom:30px}
+.antigas{margin-top:10px;padding-top:18px;border-top:1px dashed var(--linha)}
+.antigas summary{cursor:pointer;color:var(--fraco);font-size:14px;font-weight:600;
+  list-style:none;display:flex;align-items:center;gap:8px;margin-bottom:18px}
+.antigas summary::-webkit-details-marker{display:none}
+.antigas summary::before{content:'▸';display:inline-block;transition:transform .15s}
+.antigas[open] summary::before{transform:rotate(90deg)}
+.antigas summary:hover{color:var(--areia)}
 .sessao .cab{display:flex;align-items:baseline;gap:12px;margin-bottom:10px;flex-wrap:wrap}
 .sessao .cab b{color:var(--areia);font-size:16px;font-weight:700}
 .sessao .cab span{color:var(--fraco);font-size:13px}
@@ -649,7 +656,18 @@ async function carregaFotos(){
                   'e elas aparecem aqui.</p>';
     return;
   }
-  g.innerHTML = d.sessoes.map((s,idx) => {
+
+  // já vem do servidor com as mais novas primeiro; aqui só separamos
+  // o que tem mais de 4 dias para esconder atrás do dropdown.
+  const corte = Date.now() - 4*24*60*60*1000;
+  const recentes = [], antigas = [];
+  d.sessoes.forEach((s,idx) => {
+    const t = s.quando ? new Date(s.quando).getTime() : NaN;
+    (isNaN(t) || t >= corte ? recentes : antigas).push(idx);
+  });
+
+  const cartao = idx => {
+    const s = d.sessoes[idx];
     const q = s.quando ? s.quando.replace('T',' · ').slice(0,16) : 'sem registro';
     const p = s.parametros || {};
     return `<div class="sessao">
@@ -665,7 +683,18 @@ async function carregaFotos(){
       <div class="tiras">${s.fotos.map(f =>
         `<img src="${f.url}" loading="lazy" alt="foto do aquário">`).join('')}</div>
     </div>`;
-  }).join('');
+  };
+
+  let html = recentes.map(cartao).join('') ||
+    '<p class="vazio">Nada nos últimos 4 dias — veja abaixo.</p>';
+  if(antigas.length){
+    html += `<details class="antigas">
+      <summary>Ver ${antigas.length} sessão(ões) com mais de 4 dias</summary>
+      ${antigas.map(cartao).join('')}
+    </details>`;
+  }
+  g.innerHTML = html;
+
   g.querySelectorAll('img').forEach(im => im.onclick = () => {
     $('#lupa img').src = im.src; $('#lupa').showModal();
   });

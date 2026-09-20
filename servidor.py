@@ -192,12 +192,18 @@ def sessoes():
 
     avulsas = sorted(existentes - usadas, reverse=True)
     if avulsas:
+        # usa o nome do arquivo mais novo (carimbo AAAAMMDD_HHMMSS) como "quando"
+        # do grupo, so para poder ordenar junto com as sessoes de verdade.
+        m = re.match(r"(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})", avulsas[0])
+        quando_avulsas = (f"{m[1]}-{m[2]}-{m[3]}T{m[4]}:{m[5]}:{m[6]}" if m else "")
         saida.append({
-            "id": "avulsas", "quando": "", "modo": "", "origem": "fora do painel",
+            "id": "avulsas", "quando": quando_avulsas, "modo": "", "origem": "fora do painel",
             "parametros": {},
             "fotos": [{"nome": n, "url": f"/fotos/{n}"} for n in avulsas],
         })
-    return jsonify({"pasta": str(PASTA_FOTOS), "sessoes": saida[:60]})
+
+    saida.sort(key=lambda s: s["quando"], reverse=True)  # mais novas primeiro
+    return jsonify({"pasta": str(PASTA_FOTOS), "sessoes": saida[:120]})
 
 
 @app.get("/fotos/<nome>")
